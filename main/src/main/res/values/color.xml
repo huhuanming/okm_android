@@ -352,6 +352,7 @@
     <color name="black">#000000</color>
     <!--  黑色  -->
 
+    <color name="segment_color">#666666</color>
 
     <color name="circle_background">#fff2f2f2</color>
     <color name="line_background">#ffcccccc</color>

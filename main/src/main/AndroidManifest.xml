@@ -7,9 +7,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/MyTheme" >
         <activity
             android:name=".Activity.MenuActivity"
+            android:icon="@drawable/lingjiaxiaochu"
+            android:theme="@style/MyTheme"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:theme="@style/MyTheme"
+            android:name=".Activity.LoginRegisterActivity"
+            android:label="@string/name"
+            android:icon="@drawable/lingjiaxiaochu"
+            />
     </application>
 
 </manifest>

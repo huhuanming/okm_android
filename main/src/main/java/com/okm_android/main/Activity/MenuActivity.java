@@ -7,12 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.okm_android.main.Adapter.MenuAdapter;
 import com.okm_android.main.R;
@@ -37,10 +37,9 @@ public class MenuActivity extends FragmentActivity {
     }
 
     private ActionBarDrawerToggle drawerToggle;
-    private View headview;
-    private int fragmentPositon = 1;
     private MenuAdapter adapter;
     public static MenuItemClick  menuItemClick;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +62,8 @@ public class MenuActivity extends FragmentActivity {
 
         final DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         final ListView navList = (ListView) findViewById(R.id.drawer);
+        relativeLayout = (RelativeLayout)findViewById(R.id.relativeLayout);
         adapter = new MenuAdapter(getActionBar().getThemedContext(),menuEntries,menuImage);
-
-
-        headview = LayoutInflater.from(this).inflate(R.layout.menu_listview_head, null);
-        navList.addHeaderView(headview,null,false);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
@@ -100,16 +96,16 @@ public class MenuActivity extends FragmentActivity {
                     @Override
                     public void onDrawerClosed(View drawerView){
                         super.onDrawerClosed(drawerView);
-                        fragmentPositon = pos;
+//                        fragmentPositon = pos;
                         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-                        Fragment fragment = Fragment.instantiate(MenuActivity.this, fragments[pos - 1]);
+                        Fragment fragment = Fragment.instantiate(MenuActivity.this, fragments[pos]);
                         tx.replace(R.id.main, fragment);
-                        getActionBar().setTitle(menuEntries.get(pos-1));
+                        getActionBar().setTitle(menuEntries.get(pos));
 
                         tx.commit();
                     }
                 });
-                drawer.closeDrawer(navList);
+                drawer.closeDrawer(relativeLayout);
             }
         });
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
