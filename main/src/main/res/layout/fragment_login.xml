@@ -71,7 +71,8 @@
         android:orientation="horizontal"
         >
         <RelativeLayout
-            android:background="@drawable/quick_login_left"
+            android:background="@drawable/quick_login_left_style"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -81,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:gravity="center"
+                android:drawablePadding="3dp"
                 android:drawableLeft="@drawable/weibo"
                 android:text="@string/sina"
                 android:layout_centerInParent="true"
@@ -90,7 +92,8 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/quick_login_right"
+            android:clickable="true"
+            android:background="@drawable/quick_login_right_style"
             android:layout_height="match_parent"
             >
             <TextView
@@ -98,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:gravity="center"
+                android:drawablePadding="3dp"
                 android:drawableLeft="@drawable/wechat"
                 android:text="@string/weixin"
                 android:layout_centerInParent="true"
