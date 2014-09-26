@@ -71,6 +71,7 @@
         android:orientation="horizontal"
         >
         <RelativeLayout
+            android:id="@+id/fragment_login_sinalayout"
             android:background="@drawable/quick_login_left_style"
             android:clickable="true"
             android:layout_width="wrap_content"
@@ -90,6 +91,7 @@
                 />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/fragment_login_weichatlayout"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:clickable="true"

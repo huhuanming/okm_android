@@ -1,5 +1,6 @@
 package com.okm_android.main.Activity;
 
+import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -32,14 +34,20 @@ public class MenuActivity extends FragmentActivity {
             "com.okm_android.main.Fragment.TruckFragment",
             "com.okm_android.main.Fragment.SettingFragment"
     };
-    public static abstract interface MenuItemClick{
-        public abstract void saveMenu();
+    public static abstract interface MenuActionbarItemClick{
+        public abstract void onClick();
     }
 
     private ActionBarDrawerToggle drawerToggle;
     private MenuAdapter adapter;
-    public static MenuItemClick  menuItemClick;
+    public static MenuActionbarItemClick  menuActionbarItemClick;
     private RelativeLayout relativeLayout;
+    private int fragmentPositon = 0;
+    String[] actions = new String[] {
+            "成都市东软大道一号"
+            ,"犀浦校园路"
+            ,"地铁站"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +104,7 @@ public class MenuActivity extends FragmentActivity {
                     @Override
                     public void onDrawerClosed(View drawerView){
                         super.onDrawerClosed(drawerView);
-//                        fragmentPositon = pos;
+                        fragmentPositon = pos;
                         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
                         Fragment fragment = Fragment.instantiate(MenuActivity.this, fragments[pos]);
                         tx.replace(R.id.main, fragment);
@@ -111,6 +119,26 @@ public class MenuActivity extends FragmentActivity {
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.main,Fragment.instantiate(MenuActivity.this, fragments[0]));
         tx.commit();
+
+
+        /** Create an array adapter to populate dropdownlist */
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item_print, actions);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_print);
+        /** Enabling dropdown list navigation for the action bar */
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        /** Defining Navigation listener */
+        ActionBar.OnNavigationListener navigationListener = new ActionBar.OnNavigationListener() {
+
+
+            @Override
+            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+
+                return false;
+            }
+        };
+        /** Setting dropdown items and item navigation listener for the actionbar */
+        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
+
 
     }
 
@@ -136,48 +164,63 @@ public class MenuActivity extends FragmentActivity {
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-//        this.item = item;
-//        switch (item.getItemId()){
-//            case R.id.menu_save:{
-//                menuItemClick.saveMenu();
-//            }
-//            break;
-//        }
+        switch (item.getItemId()){
+            case R.id.menu_search:{
+                menuActionbarItemClick.onClick();
+            }
+            break;
+        }
         return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menumanagement_right, menu);
-//        MenuItem saveMenuItem = menu.getItem(0);
-//        saveMenuItem.setVisible(false);
-//        switch (fragmentPositon){
-//            case 1:{
-//                saveMenuItem.setVisible(false);
-//                adapter.notifyDataSetChanged();
-//            }
-//            break;
-//            case 2:{
-//                saveMenuItem.setVisible(false);
-//                adapter.notifyDataSetChanged();
-//            }
-//            break;
-//            case 3:{
-//                saveMenuItem.setVisible(false);
-//                adapter.notifyDataSetChanged();
-//            }
-//            break;
-//            case 4:{
-//                saveMenuItem.setVisible(true);
-//                adapter.notifyDataSetChanged();
-//            }
-//            break;
-//            case 5:{
-//                saveMenuItem.setVisible(false);
-//                adapter.notifyDataSetChanged();
-//            }
-//            break;
-//        }
+//        Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menumanagement_right, menu);
+        MenuItem searchMenuItem = menu.getItem(0);
+        MenuItem shackMenuItem = menu.getItem(1);
+        searchMenuItem.setVisible(false);
+        shackMenuItem.setVisible(false);
+        switch (fragmentPositon){
+            case 0:{
+
+                searchMenuItem.setVisible(true);
+                shackMenuItem.setVisible(true);
+                adapter.notifyDataSetChanged();
+            }
+            break;
+            case 1:{
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle("个人资料");
+                shackMenuItem.setVisible(false);
+                searchMenuItem.setVisible(false);
+                adapter.notifyDataSetChanged();
+            }
+            break;
+            case 2:{
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle("我的订单");
+                shackMenuItem.setVisible(false);
+                searchMenuItem.setVisible(false);
+                adapter.notifyDataSetChanged();
+            }
+            break;
+            case 3:{
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle("送货地址");
+                shackMenuItem.setVisible(false);
+                searchMenuItem.setVisible(false);
+                adapter.notifyDataSetChanged();
+            }
+            break;
+            case 4:{
+                getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setTitle("设置");
+                shackMenuItem.setVisible(false);
+                searchMenuItem.setVisible(false);
+                adapter.notifyDataSetChanged();
+            }
+            break;
+        }
         return true;
     }
 

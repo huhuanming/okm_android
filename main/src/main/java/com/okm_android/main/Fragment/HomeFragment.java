@@ -1,7 +1,8 @@
 package com.okm_android.main.Fragment;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,12 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.okm_android.main.Activity.LoginRegisterActivity;
+import com.okm_android.main.Activity.MenuActivity;
 import com.okm_android.main.Adapter.FragmentHomeAdapter;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.ToastUtils;
-import com.okm_android.main.View.ListView.NoScrollListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,7 @@ import java.util.List;
 /**
  * Created by chen on 14-9-22.
  */
-public class HomeFragment extends Fragment implements ViewPager.OnPageChangeListener{
+public class HomeFragment extends Fragment implements ViewPager.OnPageChangeListener,MenuActivity.MenuActionbarItemClick{
     private View parentView;
 
     private List<ImageView> imagelist;
@@ -42,42 +45,24 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     private Spinner spinner_sorting;
     private Spinner spinner_shop;
 
-    private NoScrollListView listview;
+    private ListView listview;
     private FragmentHomeAdapter adapter;
-    private View headview;
 
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_home, container, false);
-        listview = (NoScrollListView)parentView.findViewById(R.id.fragment_home_listview);
-//        headview = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_home_head, null);
-//        listview.addHeaderView(headview,null,false);
+        getActivity().invalidateOptionsMenu();
+        getActivity().getActionBar().setDisplayShowTitleEnabled(false);
+        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        listview = (ListView)parentView.findViewById(R.id.fragment_home_listview);
         adapter = new FragmentHomeAdapter(getActivity());
         listview.setAdapter(adapter);
 
 
         init();
         initSpinner();
-        // 开启线程无限自动移动
-        Thread myThread = new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                while (!isStop) {
-                    //每个两秒钟发一条消息到主线程，更新viewpager界面
-                    SystemClock.sleep(3000);
-                    getActivity().runOnUiThread(new Runnable() {
-                        public void run() {
-                            // 此方法在主线程中执行
-                            int newindex = viewPager.getCurrentItem() + 1;
-                            viewPager.setCurrentItem(newindex);
-                        }
-                    });
-                }
-            }
-        });
-        myThread.start(); // 用来更细致的划分  比如页面失去焦点时候停止子线程恢复焦点时再开启
         return parentView;
     }
 
@@ -169,7 +154,28 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             }
         });
 
+//        // 开启线程无限自动移动
+//        Thread myThread = new Thread(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                while (!isStop) {
+//                    //每个两秒钟发一条消息到主线程，更新viewpager界面
+//                    SystemClock.sleep(3000);
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        public void run() {
+//                            // 此方法在主线程中执行
+//                            int newindex = viewPager.getCurrentItem() + 1;
+//                            viewPager.setCurrentItem(newindex);
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//        myThread.start(); // 用来更细致的划分  比如页面失去焦点时候停止子线程恢复焦点时再开启
+
     }
+
 
     //banner的适配器
     class MyAdapter extends PagerAdapter {
@@ -246,8 +252,23 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        isStop = true;
+    public void onResume() {
+        super.onResume();
+        MenuActivity.menuActionbarItemClick = this;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MenuActivity.menuActionbarItemClick = null;
+    }
+
+
+    @Override
+    public void onClick() {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), LoginRegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

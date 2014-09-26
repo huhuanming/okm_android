@@ -7,8 +7,7 @@
     >
     <TextView
         android:layout_width="3dp"
-        android:layout_marginLeft="40dp"
-
+        android:layout_marginLeft="22.6dp"
         android:layout_height="match_parent"
         android:background="#E5E5E5"
         />
@@ -16,90 +15,84 @@
         android:layout_width="3dp"
 
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="22.6dp"
         android:layout_height="match_parent"
         android:background="#E5E5E5"
         />
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:scrollbars="none"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="fill_parent"
+                android:layout_height="112.5dp"
+                />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/viewpager"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp"
+                >
+                <LinearLayout
+                    android:id="@+id/ll_point_group"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    >
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginRight="22.5dp"
+            android:layout_marginLeft="22.5dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="11.5dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             >
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/spinner_sorting"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                >
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewpager"
-                    android:layout_width="fill_parent"
-                    android:layout_height="150dp"
-                    />
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/viewpager"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    >
-                    <LinearLayout
-                        android:id="@+id/ll_point_group"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_horizontal"
-                        >
-                    </LinearLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"
-                >
-                <Spinner
-                    android:layout_weight="1"
-                    android:id="@+id/spinner_sorting"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:layout_gravity="center"
-                    />
-                <Spinner
-                    android:layout_weight="1"
-                    android:id="@+id/spinner_shop"
-                    android:layout_width="0dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    />
-            </LinearLayout>
-            <com.okm_android.main.View.ListView.NoScrollListView
-                android:id="@+id/fragment_home_listview"
-                android:layout_width="fill_parent"
-                android:scrollbars="none"
+                android:gravity="center"
                 android:layout_marginRight="20dp"
+                android:layout_gravity="center"
+                />
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/spinner_shop"
+                android:layout_width="0dp"
                 android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content"
-                android:dividerHeight="15dp"
-                android:divider="#00000000"
-                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 />
         </LinearLayout>
-    </ScrollView>
+        <ListView
+            android:id="@+id/fragment_home_listview"
+            android:layout_width="fill_parent"
+            android:scrollbars="none"
+            android:layout_marginRight="11.25dp"
+            android:layout_marginLeft="11.25dp"
+            android:layout_height="wrap_content"
+            android:dividerHeight="22.5dp"
+            android:divider="#00000000"
+            android:layout_marginBottom="3dp"
+            />
+    </LinearLayout>
 
 </RelativeLayout>
