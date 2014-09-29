@@ -20,4 +20,8 @@
     <string name="forgetpassword">忘记密码</string>
     <string name="verification_code">验证码</string>
     <string name="get_verification_code">获取验证码</string>
+    <string name="do_not_kown_eat">不知道吃什么?</string>
+    <string name="shake_food">摇一摇随机选单</string>
+    <string name="search">搜索</string>
+    <string name="search_food">输入菜品关键字</string>
 </resources>

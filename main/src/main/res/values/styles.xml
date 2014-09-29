@@ -36,4 +36,21 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+
+    <style name="shake_style" parent="@style/AppTheme">
+        <item name="android:windowActionBar">true</item>
+        <item name="android:actionBarStyle">@style/Shake_ActionBarStyle</item>
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+    <style name="Shake_ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="android:background">#25ADE8</item>
+        <item name="android:titleTextStyle">@style/AcBar_titleStyle</item>
+        //替换actionbar背景图片
+        <!--
+
+                <item name="android:displayOptions">showTitle</item> //只显示title 不显示logo
+
+        -->
+    </style>
+
 </resources>

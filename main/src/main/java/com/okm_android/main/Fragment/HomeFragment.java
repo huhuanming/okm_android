@@ -16,8 +16,9 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.okm_android.main.Activity.LoginRegisterActivity;
 import com.okm_android.main.Activity.MenuActivity;
+import com.okm_android.main.Activity.SearchActivity;
+import com.okm_android.main.Activity.ShakeActivity;
 import com.okm_android.main.Adapter.FragmentHomeAdapter;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.ToastUtils;
@@ -265,10 +266,23 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
 
     @Override
-    public void onClick() {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), LoginRegisterActivity.class);
-        startActivity(intent);
+    public void onClick(int id) {
+        switch (id)
+        {
+            case R.id.menu_search:{
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            }
+            break;
+            case R.id.menu_shake:{
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ShakeActivity.class);
+                startActivity(intent);
+            }
+            break;
+        }
+
     }
 
 }

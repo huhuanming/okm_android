@@ -5,18 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.okm_android.main.R;
 
+import java.util.ArrayList;
+
 /**
- * Created by chen on 14-9-24.
+ * Created by chen on 14-9-29.
  */
-public class FragmentHomeAdapter extends BaseAdapter{
+public class SearchAdapter extends BaseAdapter {
 
     //	内部类实现BaseAdapter  ，自定义适配器
     private Context context;
+    private ArrayList<String> menuEntries;
+    private ArrayList<Integer> menuImage;
 
-    public FragmentHomeAdapter(Context context)
+    public SearchAdapter(Context context)
     {
         this.context = context;
     }
@@ -31,7 +37,7 @@ public class FragmentHomeAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 6;
+        return 5;
     }
 
     @Override
@@ -52,12 +58,12 @@ public class FragmentHomeAdapter extends BaseAdapter{
         final ViewHolder holder;
         if(convertView == null)
         {
-            convertView = LayoutInflater.from(context).inflate(R.layout.fragment_home_item, null);
-//            holder = new ViewHolder();
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_search_item, null);
+            holder = new ViewHolder();
 //            holder.textView = (TextView) convertView
 //                    .findViewById(R.id.activity_menu_text);
 //            holder.img = (ImageView)convertView.findViewById(R.id.activity_menu_img);
-//            convertView.setTag(holder);
+            convertView.setTag(holder);
         }
         else
         {
@@ -69,6 +75,9 @@ public class FragmentHomeAdapter extends BaseAdapter{
 
         return convertView;
     }
+
     class ViewHolder {
+        TextView textView;
+        ImageView img;
     }
 }
