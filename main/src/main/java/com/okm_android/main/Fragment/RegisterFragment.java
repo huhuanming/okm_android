@@ -1,5 +1,6 @@
 package com.okm_android.main.Fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,19 +13,21 @@ import android.widget.TextView;
 
 import com.okm_android.main.ApiManager.MainApiManager;
 import com.okm_android.main.ApiManager.MerchantsApiManager;
+import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.UploadBackData;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.Constant;
+import com.okm_android.main.Utils.EncodeUtils;
 import com.okm_android.main.Utils.ErrorUtils;
-import com.okm_android.main.Utils.ShareUtils;
 import com.okm_android.main.Utils.ToastUtils;
-import com.okm_android.main.Utils.TokenUtils.AccessToken;
+import com.okm_android.main.Utils.TokenUtils.VerificationCode;
 import com.okm_android.main.View.Button.BootstrapButton;
 
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 import rx.android.concurrency.AndroidSchedulers;
 import rx.util.functions.Action1;
 
@@ -36,9 +39,13 @@ public class RegisterFragment extends Fragment{
     private EditText phonenumber;
     private EditText register_verification_code;
     private TextView get_verification_code;
-    private EditText password;
+    private EditText passwordEdit;
     private BootstrapButton register_button;
     private Handler handler;
+    private SmoothProgressBar progressbar;
+
+    private SharedPreferences.Editor editor;
+    private SharedPreferences mshared;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,9 +82,10 @@ public class RegisterFragment extends Fragment{
     private void init(){
         phonenumber = (EditText)parentView.findViewById(R.id.register_phonenumber);
         register_verification_code = (EditText)parentView.findViewById(R.id.register_verification_code);
-        password = (EditText)parentView.findViewById(R.id.register_password);
+        passwordEdit = (EditText)parentView.findViewById(R.id.register_password);
         get_verification_code =(TextView)parentView.findViewById(R.id.get_verification_code);
         register_button = (BootstrapButton)parentView.findViewById(R.id.register_button);
+        progressbar = (SmoothProgressBar)parentView.findViewById(R.id.register_progressbar);
     }
 
     private void initListener(){
@@ -85,37 +93,52 @@ public class RegisterFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 verificationCode();
-                setTime();
+
 //                swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getUser();
             }
         });
     }
 
     private void verificationCode()
     {
+        String number = phonenumber.getText().toString().trim();
+        if(number.equals(""))
+        {
+            ToastUtils.setToast(getActivity(),"请输入电话号码");
+        }
+        else {
+            setTime();
 
-        AccessToken accessToken = new AccessToken(ShareUtils.getToken(getActivity()),ShareUtils.getKey(getActivity()));
-        getVerificationCode("13281828743", new MainApiManager.FialedInterface() {
-            @Override
-            public void onSuccess(Object object) {
+            getVerificationCode(number, new MainApiManager.FialedInterface() {
+                @Override
+                public void onSuccess(Object object) {
 
-            }
+                }
 
-            @Override
-            public void onFailth(int code) {
-                ErrorUtils.setError(code,getActivity());
-            }
+                @Override
+                public void onFailth(int code) {
+                    ErrorUtils.setError(code,getActivity());
+                }
 
-            @Override
-            public void onOtherFaith() {
-                ToastUtils.setToast(getActivity(), "发生错误");
-            }
+                @Override
+                public void onOtherFaith() {
+                    ToastUtils.setToast(getActivity(), "发生错误");
+                }
 
-            @Override
-            public void onNetworkError() {
-                ToastUtils.setToast(getActivity(), "网络错误");
-            }
-        });
+                @Override
+                public void onNetworkError() {
+                    ToastUtils.setToast(getActivity(), "网络错误");
+                }
+            });
+        }
+
     }
 
     private void getVerificationCode(String phone_number, final MainApiManager.FialedInterface fialedInterface)
@@ -125,6 +148,92 @@ public class RegisterFragment extends Fragment{
                     @Override
                     public void call(UploadBackData uploadBackData) {
                         fialedInterface.onSuccess(uploadBackData);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                        if(throwable.getClass().getName().toString().indexOf("RetrofitError") != -1) {
+                            retrofit.RetrofitError e = (retrofit.RetrofitError) throwable;
+                            if(e.isNetworkError())
+                            {
+                                fialedInterface.onNetworkError();
+
+                            }
+                            else {
+                                fialedInterface.onFailth(e.getResponse().getStatus());
+                            }
+                        }
+                        else{
+                            fialedInterface.onOtherFaith();
+                        }
+                    }
+                });
+    }
+
+    private void getUser()
+    {
+        progressbar.setVisibility(View.VISIBLE);
+        String number = phonenumber.getText().toString().trim();
+        String encryption_code = register_verification_code.getText().toString().trim();
+        String password = passwordEdit.getText().toString().trim();
+
+        if(number.equals(""))
+        {
+            ToastUtils.setToast(getActivity(),"请输入电话号码");
+        }
+        else if(encryption_code.equals(""))
+        {
+            ToastUtils.setToast(getActivity(),"请输入验证码");
+        }
+        else if(password.equals(""))
+        {
+            ToastUtils.setToast(getActivity(),"请输入密码");
+        }
+        else{
+            VerificationCode verificationCode = new VerificationCode(encryption_code);
+            createUser(number, EncodeUtils.MD5(EncodeUtils.MD5(password)), verificationCode.encryptionCode(), new MainApiManager.FialedInterface() {
+                @Override
+                public void onSuccess(Object object) {
+                    ToastUtils.setToast(getActivity(), "注册成功");
+                    RegisterBackData registerBackData = (RegisterBackData) object;
+                    mshared = getActivity().getSharedPreferences("usermessage", 0);
+                    editor = mshared.edit();
+                    editor.putString("token", registerBackData.access_token.token);
+                    editor.putString("key", registerBackData.access_token.key);
+                    editor.commit();
+                    progressbar.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailth(int code) {
+                    ErrorUtils.setError(code,getActivity());
+                    progressbar.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onOtherFaith() {
+                    progressbar.setVisibility(View.GONE);
+                    ToastUtils.setToast(getActivity(), "发生错误");
+                }
+
+                @Override
+                public void onNetworkError() {
+                    progressbar.setVisibility(View.GONE);
+                    ToastUtils.setToast(getActivity(), "网络错误");
+                }
+            });
+        }
+
+    }
+
+    private void createUser(String phone_number,String password, String encryption_code, final MainApiManager.FialedInterface fialedInterface)
+    {
+        MerchantsApiManager.createUser(phone_number, password, encryption_code).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<RegisterBackData>() {
+                    @Override
+                    public void call(RegisterBackData registerBackData) {
+                        fialedInterface.onSuccess(registerBackData);
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -178,7 +287,8 @@ public class RegisterFragment extends Fragment{
             public void run()
             {
                 timer.cancel();
-
+                handler.obtainMessage(Constant.MSG_FINISH)
+                        .sendToTarget();
             }
 
         }, new Date(end));

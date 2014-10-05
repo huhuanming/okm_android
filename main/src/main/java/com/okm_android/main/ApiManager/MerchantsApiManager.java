@@ -1,6 +1,7 @@
 package com.okm_android.main.ApiManager;
 
 
+import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.UploadBackData;
 
 import rx.Observable;
@@ -21,6 +22,40 @@ public class MerchantsApiManager extends MainApiManager{
             public Subscription onSubscribe(Observer<? super UploadBackData> observer) {
                 try {
                     observer.onNext(VerificationCodeapiManager.getVerificationCode(phone_number));
+                    observer.onCompleted();
+                } catch (Exception e) {
+                    observer.onError(e);
+                }
+
+                return Subscriptions.empty();
+            }
+        }).subscribeOn(Schedulers.threadPoolForIO());
+    }
+
+    private static final MerchantsApiInterface.ApiManagerCreateUser CreateUserapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerCreateUser.class);
+    public static Observable<RegisterBackData> createUser(final String phone_number, final String password, final String encryption_code) {
+        return Observable.create(new Observable.OnSubscribeFunc<RegisterBackData>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super RegisterBackData> observer) {
+                try {
+                    observer.onNext(CreateUserapiManager.createUser(phone_number, password, encryption_code));
+                    observer.onCompleted();
+                } catch (Exception e) {
+                    observer.onError(e);
+                }
+
+                return Subscriptions.empty();
+            }
+        }).subscribeOn(Schedulers.threadPoolForIO());
+    }
+
+    private static final MerchantsApiInterface.ApiManagerLogin LoginapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerLogin.class);
+    public static Observable<RegisterBackData> Login(final String phone_number, final String password) {
+        return Observable.create(new Observable.OnSubscribeFunc<RegisterBackData>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super RegisterBackData> observer) {
+                try {
+                    observer.onNext(LoginapiManager.login(phone_number, password));
                     observer.onCompleted();
                 } catch (Exception e) {
                     observer.onError(e);

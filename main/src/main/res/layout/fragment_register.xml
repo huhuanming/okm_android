@@ -78,7 +78,21 @@
         android:background="@drawable/login_bottom"
         android:singleLine="true"
         android:hint="@string/password"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="3dp"
+        >
+        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
+            android:id="@+id/register_progressbar"
+            android:layout_width="100dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"/>
 
+    </RelativeLayout>
     <com.okm_android.main.View.Button.BootstrapButton
         android:id="@+id/register_button"
         android:layout_width="fill_parent"
