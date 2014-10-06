@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         adapter = new FragmentHomeAdapter(getActivity());
         listview.setAdapter(adapter);
 
-
         init();
         initSpinner();
 

@@ -5,6 +5,8 @@ package com.okm_android.main.Model;
  */
 public class RegisterBackData {
 
+    public String name;
+
     public String last_login_at;
 
     public Access_token access_token;

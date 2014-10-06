@@ -66,5 +66,22 @@ public class MerchantsApiManager extends MainApiManager{
         }).subscribeOn(Schedulers.threadPoolForIO());
     }
 
+    private static final MerchantsApiInterface.ApiManagerLoginByOauth LoginByOauthapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerLoginByOauth.class);
+    public static Observable<RegisterBackData> LoginByOauth(final String uid, final String oauth_token, final String oauth_type) {
+        return Observable.create(new Observable.OnSubscribeFunc<RegisterBackData>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super RegisterBackData> observer) {
+                try {
+                    observer.onNext(LoginByOauthapiManager.loginByOauth(uid, oauth_token,oauth_type));
+                    observer.onCompleted();
+                } catch (Exception e) {
+                    observer.onError(e);
+                }
+
+                return Subscriptions.empty();
+            }
+        }).subscribeOn(Schedulers.threadPoolForIO());
+    }
+
 
 }

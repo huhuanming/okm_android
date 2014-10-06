@@ -2,6 +2,8 @@ package com.okm_android.main.Fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import com.okm_android.main.ApiManager.MainApiManager;
 import com.okm_android.main.ApiManager.MerchantsApiManager;
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.Constant;
 import com.okm_android.main.Utils.EncodeUtils;
 import com.okm_android.main.Utils.ErrorUtils;
 import com.okm_android.main.Utils.ToastUtils;
@@ -42,12 +45,27 @@ public class LoginFragment extends Fragment{
     private SharedPreferences.Editor editor;
     private SharedPreferences mshared;
 
+    private Handler handler;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_login, container, false);
         init();
         initSina();
         initListener();
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what) {
+                    case Constant.MSG_FINISH:
+                        ToastUtils.setToast(getActivity(),"登录失败");
+                        break;
+                }
+            }
+        };
+
         return parentView;
     }
 
@@ -72,12 +90,12 @@ public class LoginFragment extends Fragment{
 
                     @Override
                     public void onError(Platform platform, int i, Throwable throwable) {
-                        Log.e("ssss","throwable"+throwable.toString());
+                        handler.obtainMessage(Constant.MSG_FINISH).sendToTarget();
                     }
 
                     @Override
                     public void onCancel(Platform platform, int i) {
-                        Log.e("ssss", "platformdfdfdffd");
+
                     }
                 });
                 if (sina[0].isValid()) {

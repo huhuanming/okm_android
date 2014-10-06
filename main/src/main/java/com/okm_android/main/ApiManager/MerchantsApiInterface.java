@@ -25,4 +25,9 @@ public class MerchantsApiInterface {
         @POST("/users/login")
         RegisterBackData login(@Query("username") String username, @Query("password") String password);
     }
+
+    public interface ApiManagerLoginByOauth {
+        @POST("/users/login_by_oauth")
+        RegisterBackData loginByOauth(@Query("uid") String uid, @Query("oauth_token") String oauth_token, @Query("oauth_type") String oauth_type);
+    }
 }
