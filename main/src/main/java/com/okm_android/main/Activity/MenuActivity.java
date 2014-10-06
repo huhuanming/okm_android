@@ -1,7 +1,6 @@
 package com.okm_android.main.Activity;
 
 import android.app.ActionBar;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -56,10 +55,6 @@ public class MenuActivity extends FragmentActivity {
         setContentView(R.layout.activity_menu);
 
         getActionBar().setTitle(R.string.home);
-
-        Intent intent = new Intent();
-        intent.setClass(MenuActivity.this,LoginRegisterActivity.class);
-        startActivity(intent);
 
         menuEntries.add("首页");
         menuEntries.add("个人资料");
