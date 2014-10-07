@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +61,9 @@ public class LoginFragment extends Fragment{
                     case Constant.MSG_FINISH:
                         ToastUtils.setToast(getActivity(),"登录失败");
                         break;
+                    case Constant.MSG_SUCCESS:
+                        progressbar.setVisibility(View.VISIBLE);
+                        break;
                 }
             }
         };
@@ -85,7 +87,8 @@ public class LoginFragment extends Fragment{
                 sina[0].setPlatformActionListener(new PlatformActionListener() {
                     @Override
                     public void onComplete(Platform platform, int i, HashMap<String, Object> stringObjectHashMap) {
-                        Log.e("ssss", "platformok" + stringObjectHashMap.toString());
+                        handler.obtainMessage(Constant.MSG_SUCCESS).sendToTarget();
+                        login(platform.getDb().getUserId(),platform.getDb().getToken());
                     }
 
                     @Override
@@ -169,6 +172,72 @@ public class LoginFragment extends Fragment{
     private void userLogin(String phone_number,String password, final MainApiManager.FialedInterface fialedInterface)
     {
         MerchantsApiManager.Login(phone_number, password).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<RegisterBackData>() {
+                    @Override
+                    public void call(RegisterBackData registerBackData) {
+                        fialedInterface.onSuccess(registerBackData);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                        if(throwable.getClass().getName().toString().indexOf("RetrofitError") != -1) {
+                            retrofit.RetrofitError e = (retrofit.RetrofitError) throwable;
+                            if(e.isNetworkError())
+                            {
+                                fialedInterface.onNetworkError();
+
+                            }
+                            else {
+                                fialedInterface.onFailth(e.getResponse().getStatus());
+                            }
+                        }
+                        else{
+                            fialedInterface.onOtherFaith();
+                        }
+                    }
+                });
+    }
+
+    private void login(String uid, String oauth_token)
+    {
+
+            sinaLogin(uid, oauth_token, "0", new MainApiManager.FialedInterface() {
+                @Override
+                public void onSuccess(Object object) {
+                    ToastUtils.setToast(getActivity(), "登录成功");
+                    RegisterBackData registerBackData = (RegisterBackData) object;
+                    mshared = getActivity().getSharedPreferences("usermessage", 0);
+                    editor = mshared.edit();
+                    editor.putString("token", registerBackData.access_token.token);
+                    editor.putString("key", registerBackData.access_token.key);
+                    editor.commit();
+                    progressbar.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailth(int code) {
+                    ErrorUtils.setError(code, getActivity());
+                    progressbar.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onOtherFaith() {
+                    progressbar.setVisibility(View.GONE);
+                    ToastUtils.setToast(getActivity(), "发生错误");
+                }
+
+                @Override
+                public void onNetworkError() {
+                    progressbar.setVisibility(View.GONE);
+                    ToastUtils.setToast(getActivity(), "网络错误");
+                }
+            });
+    }
+
+    private void sinaLogin(String uid,String oauth_token,String oauth_type, final MainApiManager.FialedInterface fialedInterface)
+    {
+        MerchantsApiManager.LoginByOauth(uid, oauth_token,oauth_type).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<RegisterBackData>() {
                     @Override
                     public void call(RegisterBackData registerBackData) {
