@@ -26,6 +26,7 @@
     <string name="shake_food">摇一摇随机选单</string>
     <string name="search">搜索</string>
     <string name="search_food">输入菜品关键字</string>
+    <string name="lijiaxiaochu">邻家小厨</string>
 
     <string name="icon">icon</string>
     <string name="back">返回</string>
@@ -41,10 +42,17 @@
     <string name="address">收货地址</string>
     <string name="choose_food">所选商品</string>
     <string name="order_details">订单详细</string>
+    <string name="own_order">我的订单</string>
 
     <string name="change_message">资料修改</string>
     <string name="change_password">密码修改</string>
     <string name="binding_phone">已绑定手机号</string>
     <string name="binding_email">已绑定邮箱</string>
     <string name="binding">账号绑定</string>
+    
+    <string name="sorting_time">按时间排序</string>
+    <string name="sorting_score">按评分排序</string>
+    
+    <string name="order_on">进行中的订单</string>
+    <string name="order_finish">已完成的订单</string>
 </resources>

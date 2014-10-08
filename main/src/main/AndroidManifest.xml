@@ -57,6 +57,13 @@
             />
 
         <activity
+            android:theme="@style/MyTheme"
+            android:name=".Activity.SortingActivity"
+            android:label="@string/lijiaxiaochu"
+            android:icon="@drawable/lingjiaxiaochu"
+            />
+
+        <activity
             android:name="cn.sharesdk.framework.ShareSDKUIShell"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"

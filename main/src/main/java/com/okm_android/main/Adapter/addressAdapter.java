@@ -1,10 +1,5 @@
 package com.okm_android.main.Adapter;
 
-import java.util.List;
-import java.util.Map;
-
-import com.okm_android.main.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.okm_android.main.R;
+
+import java.util.List;
+import java.util.Map;
+
 public class addressAdapter extends BaseAdapter{
-	 private Context context;                        //运行上下文   
+     private Context context;                        //运行上下文
 	 private List<Map<String, String>> listItems;    //商品信息集合   
 	 private LayoutInflater layoutInflater;
 	 public addressAdapter(Context c,List<Map<String,String>> list)
