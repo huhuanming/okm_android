@@ -25,7 +25,6 @@ public class OrderFragment extends Fragment {
             "com.okm_android.main.Fragment.OnGoingOrderFragment",
             "com.okm_android.main.Fragment.FinishOrderFragment"
     };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_order,container,false);
