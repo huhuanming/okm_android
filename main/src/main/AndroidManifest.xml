@@ -36,6 +36,7 @@
             android:icon="@drawable/lingjiaxiaochu"
             />
 
+
         <activity
             android:theme="@style/MyTheme"
             android:name=".Activity.SearchActivity"

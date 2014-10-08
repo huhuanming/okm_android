@@ -39,4 +39,9 @@
     <string name="address">收货地址</string>
     <string name="choose_food">所选商品</string>
     <string name="order_details">订单详细</string>
+    <string name="small_ticket">收银小票</string>
+    <string name="commercial_ticket">商用小票</string>
+    <string name="instant_send">即时送</string>
+    <string name="appoint_send">预约送达</string>
+    <string name="order_note">订单备注</string>
 </resources>

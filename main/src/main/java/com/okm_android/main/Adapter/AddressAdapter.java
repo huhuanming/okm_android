@@ -12,35 +12,35 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class addressAdapter extends BaseAdapter{
-	 private Context context;                        //运行上下文   
-	 private List<Map<String, String>> listItems;    //商品信息集合   
-	 private LayoutInflater layoutInflater;
-	 public addressAdapter(Context c,List<Map<String,String>> list)
-	 {
-		 context=c;
-		 layoutInflater = LayoutInflater.from(context);
-		 listItems=list;
-	 }
-	@Override
-	public int getCount() {
-		return listItems.size();
-	}
-	@Override
-	public Map<String,String> getItem(int position) {
-		return listItems.get(position); 
-	}
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		TextView name = null;
-		TextView number = null;
-		TextView address = null;
-		if(convertView == null)
-        {    
+public class AddressAdapter extends BaseAdapter{
+    private Context context;                        //运行上下文
+    private List<Map<String, String>> listItems;    //商品信息集合
+    private LayoutInflater layoutInflater;
+    public AddressAdapter(Context c,List<Map<String,String>> list)
+    {
+        context=c;
+        layoutInflater = LayoutInflater.from(context);
+        listItems=list;
+    }
+    @Override
+    public int getCount() {
+        return listItems.size();
+    }
+    @Override
+    public Map<String,String> getItem(int position) {
+        return listItems.get(position);
+    }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        TextView name = null;
+        TextView number = null;
+        TextView address = null;
+        if(convertView == null)
+        {
             convertView = layoutInflater.inflate(R.layout.address_item, null);
             //得到条目中的子组件
         }
@@ -52,5 +52,5 @@ public class addressAdapter extends BaseAdapter{
         number.setText(listItems.get(position).get("number").toString());
         address.setText(listItems.get(position).get("address").toString());
         return convertView;
-	}   
+    }
 }

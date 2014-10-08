@@ -1,6 +1,7 @@
 package com.okm_android.main.Fragment;
 
 import android.app.ActionBar;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.okm_android.main.Adapter.InstantOrderAdapter;
 import com.okm_android.main.Adapter.AddressAdapter;
 import com.okm_android.main.R;
 import com.okm_android.main.View.ListView.swipemenulistview.SwipeMenu;
@@ -22,46 +25,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * Created by chen on 14-9-22.
+ * Created by QYM on 14-10-8.
  */
-public class TruckFragment extends Fragment {
+public class OrderChooseFragment extends Fragment{
     private View parentView;
     private List<Map<String,String>> mAppList;
-    private AddressAdapter mAdapter;
+    private InstantOrderAdapter mAdapter=null;
     private SwipeMenuListView mListView;
-    @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        parentView = inflater.inflate(R.layout.fragment_address, container, false);
-        getActivity().invalidateOptionsMenu();
+        parentView=inflater.inflate(R.layout.fragment_order_choose, container, false);
         getActivity().getActionBar().setDisplayShowTitleEnabled(true);
         getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        getActivity().invalidateOptionsMenu();
 
-        mListView = (SwipeMenuListView) parentView.findViewById(R.id.listView);
+        mListView = (SwipeMenuListView) parentView.findViewById(R.id.order_choose_listview);
         mAppList=get_search();
-        mAdapter=new AddressAdapter(getActivity(),mAppList);
+        mAdapter=new InstantOrderAdapter(getActivity(),mAppList);
         mListView.setAdapter(mAdapter);
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
             public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        getActivity().getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0x9a, 0xd2,0x68)));
-                // set item width
-                openItem.setWidth(dp2px(67));
-                // set item title
-                openItem.setTitle("默认");
-                // set item title fontsize
-                openItem.setTitleSize(20);
-                // set item title font color
-                openItem.setTitleColor(Color.rgb(0xff, 0xff,0xff));
-                // add to menu
-                menu.addMenuItem(openItem);
-
-                // create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getActivity().getApplicationContext());
                 // set item background
@@ -79,8 +66,7 @@ public class TruckFragment extends Fragment {
             }
         };
         // set creator
-        mListView.setMenuCreator(creator);
-        return parentView;
+        mListView.setMenuCreator(creator);        return parentView;
     }
     private List<Map<String, String>> get_search()   //从服务器里加载数据
     {
@@ -90,9 +76,9 @@ public class TruckFragment extends Fragment {
         for(int i=0;i<4;i++)
         {
             map=new HashMap<String, String>();
-            map.put("name", "秦源懋");
-            map.put("number","18200272893");
-            map.put("address", "西南交大");
+            map.put("name", "秘制牛肉盖浇");
+            map.put("number","1");
+            map.put("money", "10");
             list.add(map);
         }
         return list;
