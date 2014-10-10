@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,6 +51,7 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_position_search);
+<<<<<<< .merge_file_auk6Cs
         ButterKnife.inject(this);
         //显示actionbar上面的返回键
         ActionBar actionBar = this.getActionBar();
@@ -71,6 +73,9 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
                 PositionSearchActivity.this.finish();
             }
         });
+=======
+
+>>>>>>> .merge_file_uHkbds
         doAroundQuery();
     }
 
@@ -80,8 +85,13 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
         int  currentPage = 0;
 // 第一个参数表示搜索字符串，第二个参数表示POI搜索类型，二选其一
 // 第三个参数表示POI搜索区域的编码，必设
+<<<<<<< .merge_file_auk6Cs
         query = new PoiSearch.Query(keyword, "", city);
         query.setPageSize(15);// 设置每页最多返回多少条poiitem
+=======
+        query = new PoiSearch.Query(getIntent().getExtras().getString("keyword"), "", getIntent().getExtras().getString("city"));
+        query.setPageSize(10);// 设置每页最多返回多少条poiitem
+>>>>>>> .merge_file_uHkbds
         query.setPageNum(currentPage);//设置查第一页
         PoiSearch poiSearch = new PoiSearch(this,query);
         poiSearch.setOnPoiSearchListener(this);
@@ -111,11 +121,15 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+<<<<<<< .merge_file_auk6Cs
                 keyword = editText.getText().toString().trim();
                 if(!keyword.equals(""))
                 {
                     doAroundQuery();
                 }
+=======
+
+>>>>>>> .merge_file_uHkbds
             }
 
             @Override
@@ -152,6 +166,7 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
                     // 取得搜索到的poiitems有多少页
                     int resultPages = poiResult.getPageCount();
                     // 取得第一页的poiitem数据，页数从数字0开始
+<<<<<<< .merge_file_auk6Cs
                     poiItems.clear();
                     List<PoiItem> list = poiResult.getPois();
                     if(list != null)
@@ -166,6 +181,15 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
                 }
             } else {
                 ToastUtils.setToast(PositionSearchActivity.this,"对不起,搜索无结果");
+=======
+                    List<PoiItem> poiItems = poiResult.getPois();
+                    // 当搜索不到poiitem数据时，会返回含有搜索关键字的城市信息
+                    List suggestionCities = poiResult.getSearchSuggestionCitys();
+                    Log.e("ssss",poiItems.toString()+poiResult.getBound()+poiResult.getQuery());
+                }
+            } else {
+                ToastUtils.setToast(PositionSearchActivity.this,"无结果");
+>>>>>>> .merge_file_uHkbds
             }
         }else{
             ToastUtils.setToast(PositionSearchActivity.this, "网络错误");
