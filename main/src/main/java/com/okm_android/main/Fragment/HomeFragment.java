@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,19 @@ import com.okm_android.main.Activity.MenuActivity;
 import com.okm_android.main.Activity.SearchActivity;
 import com.okm_android.main.Activity.ShakeActivity;
 import com.okm_android.main.Adapter.FragmentHomeAdapter;
+import com.okm_android.main.ApiManager.MainApiManager;
+import com.okm_android.main.ApiManager.MerchantsApiManager;
+import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.Constant;
+import com.okm_android.main.Utils.ErrorUtils;
 import com.okm_android.main.Utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.android.concurrency.AndroidSchedulers;
+import rx.util.functions.Action1;
 
 /**
  * Created by chen on 14-9-22.
@@ -176,6 +185,68 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     }
 
+    private void restaurantData(String latitude, String longitude,String page)
+    {
+
+
+        getRestaurantDta(latitude, longitude, page, new MainApiManager.FialedInterface() {
+            @Override
+            public void onSuccess(Object object) {
+                List<RestaurantBackData> restaurantBackDatas = (List<RestaurantBackData>)object;
+                Log.e("ssss",restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).avatar);
+//                ToastUtils.setToast(getActivity(),restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).avatar);
+            }
+
+            @Override
+            public void onFailth(int code) {
+                ErrorUtils.setError(code, getActivity());
+//                progressbar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onOtherFaith() {
+//                progressbar.setVisibility(View.GONE);
+                ToastUtils.setToast(getActivity(), "发生错误");
+            }
+
+            @Override
+            public void onNetworkError() {
+//                progressbar.setVisibility(View.GONE);
+                ToastUtils.setToast(getActivity(), "网络错误");
+            }
+        });
+    }
+
+    private void getRestaurantDta(String latitude,String longitude,String page, final MainApiManager.FialedInterface fialedInterface)
+    {
+        MerchantsApiManager.RestaurantsList(latitude, longitude, page).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<RestaurantBackData>>() {
+                    @Override
+                    public void call(List<RestaurantBackData> restaurantBackDatas) {
+                        fialedInterface.onSuccess(restaurantBackDatas);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                        if(throwable.getClass().getName().toString().indexOf("RetrofitError") != -1) {
+                            retrofit.RetrofitError e = (retrofit.RetrofitError) throwable;
+                            if(e.isNetworkError())
+                            {
+                                fialedInterface.onNetworkError();
+
+                            }
+                            else {
+                                fialedInterface.onFailth(e.getResponse().getStatus());
+                            }
+                        }
+                        else{
+                            fialedInterface.onOtherFaith();
+                        }
+                    }
+                });
+    }
+
 
     //banner的适配器
     class MyAdapter extends PagerAdapter {
@@ -263,6 +334,16 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         MenuActivity.menuActionbarItemClick = null;
     }
 
+
+    @Override
+    public void onMessageClick(int id,double geoLat,double geoLng) {
+        switch (id)
+        {
+            case Constant.MSG_GETMESSAGE:
+                restaurantData(geoLat+"",geoLng+"","0");
+                break;
+        }
+    }
 
     @Override
     public void onClick(int id) {

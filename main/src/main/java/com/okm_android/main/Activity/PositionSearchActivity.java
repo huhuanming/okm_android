@@ -176,4 +176,6 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
     public void onPoiItemDetailSearched(PoiItemDetail poiItemDetail, int i) {
 
     }
+
+
 }
