@@ -4,12 +4,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ListView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
         android:id="@+id/position_search_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:divider="#EBEBEB"
         android:dividerHeight="1dp"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"/>
-
+        android:scrollbars="none"
+        />
 </LinearLayout>
