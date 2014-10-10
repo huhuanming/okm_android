@@ -1,7 +1,9 @@
 package com.okm_android.main.Activity;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -16,13 +18,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.location.LocationManagerProxy;
+import com.amap.api.location.LocationProviderProxy;
 import com.okm_android.main.Adapter.MenuAdapter;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.ToastUtils;
 
 import java.util.ArrayList;
 
 
-public class MenuActivity extends FragmentActivity {
+public class MenuActivity extends FragmentActivity implements AMapLocationListener{
 
     //    final String[] menuEntries = {"店铺管理","数据报表","订单管理","菜单管理","关于我们"};
     private ArrayList<String> menuEntries = new ArrayList<String>();
@@ -38,15 +45,21 @@ public class MenuActivity extends FragmentActivity {
         public abstract void onClick(int id);
     }
 
+    ArrayAdapter<String> navigationAdapter;
+
+    private double geoLat;
+    private double geoLng;
+    private LocationManagerProxy mLocationManagerProxy;
+    private String keyword;
+    private String city;
     private ActionBarDrawerToggle drawerToggle;
     private MenuAdapter adapter;
     public static MenuActionbarItemClick  menuActionbarItemClick;
     private RelativeLayout relativeLayout;
     private int fragmentPositon = 0;
     String[] actions = new String[] {
-            "成都市东软大道一号"
-            ,"犀浦校园路"
-            ,"地铁站"
+            "正在定位..."
+            ,"更多位置"
     };
 
     @Override
@@ -121,27 +134,130 @@ public class MenuActivity extends FragmentActivity {
         tx.commit();
 
 
+        setActionbarSpinner();
+
+        init();
+    }
+
+    private void setActionbarSpinner(){
         /** Create an array adapter to populate dropdownlist */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item_print, actions);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_print);
+        navigationAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_item_print, actions);
+        navigationAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item_print);
         /** Enabling dropdown list navigation for the action bar */
         getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         /** Defining Navigation listener */
         ActionBar.OnNavigationListener navigationListener = new ActionBar.OnNavigationListener() {
-
-
             @Override
             public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-
+                switch (itemPosition)
+                {
+                    case 1:
+                        Intent intent = new Intent();
+                        intent.setClass(MenuActivity.this,PositionSearchActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("keyword", keyword);
+                        bundle.putString("city", city);
+                        intent.putExtras(bundle);
+                        startActivityForResult(intent,201);
+                        break;
+                }
                 return false;
             }
         };
-        /** Setting dropdown items and item navigation listener for the actionbar */
-        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
-
+        getActionBar().setListNavigationCallbacks(navigationAdapter, navigationListener);
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode)
+        {
+            case 201:
+                geoLat = data.getExtras().getDouble("geoLat");
+                geoLng = data.getExtras().getDouble("geoLng");
+                actions[0] = data.getExtras().getString("title");
+                break;
+
+        }
+        setActionbarSpinner();
+    }
+
+    /**
+     * 初始化定位
+     */
+    private void init() {
+
+        mLocationManagerProxy = LocationManagerProxy.getInstance(this);
+        mLocationManagerProxy.setGpsEnable(false);
+
+        //此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        //注意设置合适的定位时间的间隔，并且在合适时间调用removeUpdates()方法来取消定位请求
+        //在定位结束后，在合适的生命周期调用destroy()方法
+        //其中如果间隔时间为-1，则定位只定一次
+        mLocationManagerProxy.requestLocationData(
+                LocationProviderProxy.AMapNetwork, 60*1000, 15, this);
+
+
+    }
+    //高德地图信息
+    @Override
+    public void onProviderEnabled(String arg0) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void onLocationChanged(Location arg0) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onProviderDisabled(String arg0) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if(amapLocation != null && amapLocation.getAMapException().getErrorCode() == 0){
+            //获取位置信息
+            geoLat = amapLocation.getLatitude();
+            geoLng = amapLocation.getLongitude();
+            actions[0] = amapLocation.getStreet();
+            city = amapLocation.getCity();
+
+            Bundle locBundle = amapLocation.getExtras();
+
+            String desc = null;
+            if (locBundle != null) {
+                desc = locBundle.getString("desc");
+                String[] position = desc.split(" ");
+                keyword = position[position.length - 2];
+                ToastUtils.setToast(MenuActivity.this,keyword);
+            }
+
+            navigationAdapter.notifyDataSetChanged();
+            //移除定位请求
+            mLocationManagerProxy.removeUpdates(this);
+            // 销毁定位
+            mLocationManagerProxy.destroy();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //移除定位请求
+        mLocationManagerProxy.removeUpdates(this);
+        // 销毁定位
+        mLocationManagerProxy.destroy();
+
+    }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         return super.onPrepareOptionsMenu(menu);
