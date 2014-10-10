@@ -24,7 +24,7 @@ import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 import com.okm_android.main.Adapter.MenuAdapter;
 import com.okm_android.main.R;
-import com.okm_android.main.Utils.Constant;
+import com.okm_android.main.Utils.AddObserver.NotificationCenter;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,6 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
     };
     public static abstract interface MenuActionbarItemClick{
         public abstract void onClick(int id);
-        public abstract void onMessageClick(int id,double geoLat,double geoLng);
     }
 
     //定位位置的经纬度和关键字
@@ -240,8 +239,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 String[] position = desc.split(" ");
                 keyword = position[position.length - 2];
             }
-
-            menuActionbarItemClick.onMessageClick(Constant.MSG_GETMESSAGE,geoLat,geoLng);
+            NotificationCenter.getInstance().postNotification("restaurant",amapLocation);
             navigationAdapter.notifyDataSetChanged();
             //移除定位请求
             mLocationManagerProxy.removeUpdates(this);

@@ -17,6 +17,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.amap.api.location.AMapLocation;
 import com.okm_android.main.Activity.MenuActivity;
 import com.okm_android.main.Activity.SearchActivity;
 import com.okm_android.main.Activity.ShakeActivity;
@@ -25,7 +26,7 @@ import com.okm_android.main.ApiManager.MainApiManager;
 import com.okm_android.main.ApiManager.MerchantsApiManager;
 import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.R;
-import com.okm_android.main.Utils.Constant;
+import com.okm_android.main.Utils.AddObserver.NotificationCenter;
 import com.okm_android.main.Utils.ErrorUtils;
 import com.okm_android.main.Utils.ToastUtils;
 
@@ -58,6 +59,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     private ListView listview;
     private FragmentHomeAdapter adapter;
 
+    private int page = 0;
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,6 +71,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         listview = (ListView)parentView.findViewById(R.id.fragment_home_listview);
         adapter = new FragmentHomeAdapter(getActivity());
         listview.setAdapter(adapter);
+
+        NotificationCenter.getInstance().addObserver("restaurant",this,"restaurantData");
 
         init();
         initSpinner();
@@ -185,15 +190,15 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     }
 
-    private void restaurantData(String latitude, String longitude,String page)
+    public void restaurantData(AMapLocation amapLocation)
     {
 
-
-        getRestaurantDta(latitude, longitude, page, new MainApiManager.FialedInterface() {
+        ToastUtils.setToast(getActivity(),"ddffd");
+        getRestaurantDta(amapLocation.getLatitude()+"", amapLocation.getLongitude()+"", page+"", new MainApiManager.FialedInterface() {
             @Override
             public void onSuccess(Object object) {
                 List<RestaurantBackData> restaurantBackDatas = (List<RestaurantBackData>)object;
-                Log.e("ssss",restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).avatar);
+                Log.e("ssss",restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).name);
 //                ToastUtils.setToast(getActivity(),restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).avatar);
             }
 
@@ -334,16 +339,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         MenuActivity.menuActionbarItemClick = null;
     }
 
-
-    @Override
-    public void onMessageClick(int id,double geoLat,double geoLng) {
-        switch (id)
-        {
-            case Constant.MSG_GETMESSAGE:
-                restaurantData(geoLat+"",geoLng+"","0");
-                break;
-        }
-    }
 
     @Override
     public void onClick(int id) {
