@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.okm_android.main.R;
@@ -40,20 +41,27 @@ public class AddressAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView name = null;
-        TextView number = null;
-        TextView address = null;
+        final ViewHolder holder;
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.address_item, null);
-            name = (TextView) convertView.findViewById(R.id.address_name);
-            number = (TextView) convertView.findViewById(R.id.address_number);
-            address = (TextView) convertView.findViewById(R.id.address_address);
+            holder = new ViewHolder();
+            holder.name = (TextView) convertView.findViewById(R.id.address_name);
+            holder.number = (TextView) convertView.findViewById(R.id.address_number);
+            holder.address = (TextView) convertView.findViewById(R.id.address_address);
+        }
+        else {
+            holder = (ViewHolder) convertView.getTag();
         }
         //从list对象中为子组件赋值
-        name.setText(listItems.get(position).get("name").toString());
-        number.setText(listItems.get(position).get("number").toString());
-        address.setText(listItems.get(position).get("address").toString());
+        holder.name.setText(listItems.get(position).get("name").toString());
+        holder.number.setText(listItems.get(position).get("number").toString());
+        holder.address.setText(listItems.get(position).get("address").toString());
         return convertView;
     }
 
+    class ViewHolder {
+        TextView name;
+        TextView number;
+        TextView address;
+    }
 }
