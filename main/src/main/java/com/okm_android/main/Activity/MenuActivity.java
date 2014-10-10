@@ -156,8 +156,6 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                         Intent intent = new Intent();
                         intent.setClass(MenuActivity.this,PositionSearchActivity.class);
                         Bundle bundle = new Bundle();
-                        bundle.putDouble("geoLat", geoLat);
-                        bundle.putDouble("geoLng", geoLng);
                         bundle.putString("keyword", keyword);
                         bundle.putString("city", city);
                         intent.putExtras(bundle);
