@@ -27,10 +27,6 @@ import com.okm_android.main.R;
 
 import java.util.ArrayList;
 
-<<<<<<< .merge_file_mS4Ajm
-=======
-
->>>>>>> .merge_file_2ruhqp
 public class MenuActivity extends FragmentActivity implements AMapLocationListener {
 
     //    final String[] menuEntries = {"店铺管理","数据报表","订单管理","菜单管理","关于我们"};
@@ -46,13 +42,6 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
     public static abstract interface MenuActionbarItemClick{
         public abstract void onClick(int id);
     }
-    //定位位置的经纬度和关键字
-    Double geoLat = 0.0;
-    Double geoLng = 0.0;
-    private String keyword = "";
-    private String city = "";
-
-    private LocationManagerProxy mLocationManagerProxy;
 
     //定位位置的经纬度和关键字
     Double geoLat = 0.0;
@@ -178,21 +167,14 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 return false;
             }
         };
-<<<<<<< .merge_file_mS4Ajm
         getActionBar().setListNavigationCallbacks(navigationAdapter, navigationListener);
 
-    }
-=======
-        /** Setting dropdown items and item navigation listener for the actionbar */
-        getActionBar().setListNavigationCallbacks(navigationAdapter, navigationListener);
-
-        init();
     }
 
     /**
      * 初始化定位
      */
-    private void init() {
+    private void init(){
 
         mLocationManagerProxy = LocationManagerProxy.getInstance(this);
         mLocationManagerProxy.setGpsEnable(false);
@@ -202,9 +184,8 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
         //在定位结束后，在合适的生命周期调用destroy()方法
         //其中如果间隔时间为-1，则定位只定一次
         mLocationManagerProxy.requestLocationData(
-                LocationProviderProxy.AMapNetwork, 60*1000, 15, this);
->>>>>>> .merge_file_2ruhqp
-
+                LocationProviderProxy.AMapNetwork, 60 * 1000, 15, this);
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -268,80 +249,6 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //移除定位请求
-        mLocationManagerProxy.removeUpdates(this);
-        // 销毁定位
-        mLocationManagerProxy.destroy();
-
-    }
-
-    /**
-     * 初始化定位
-     */
-    private void init() {
-
-        mLocationManagerProxy = LocationManagerProxy.getInstance(this);
-        mLocationManagerProxy.setGpsEnable(false);
-
-        //此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-        //注意设置合适的定位时间的间隔，并且在合适时间调用removeUpdates()方法来取消定位请求
-        //在定位结束后，在合适的生命周期调用destroy()方法
-        //其中如果间隔时间为-1，则定位只定一次
-        mLocationManagerProxy.requestLocationData(
-                LocationProviderProxy.AMapNetwork, 60*1000, 15, this);
-
-
-    }
-    //高德地图信息
-    @Override
-    public void onProviderEnabled(String arg0) {
-        // TODO Auto-generated method stub
-
-    }
-    @Override
-    public void onLocationChanged(Location arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onProviderDisabled(String arg0) {
-        // TODO Auto-generated method stub
-
-    }
-    @Override
-    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-        // TODO Auto-generated method stub
-
-    }
-    @Override
-    public void onLocationChanged(AMapLocation amapLocation) {
-        if(amapLocation != null && amapLocation.getAMapException().getErrorCode() == 0){
-            //获取位置信息
-            geoLat = amapLocation.getLatitude();
-            geoLng = amapLocation.getLongitude();
-            actions[0] = amapLocation.getStreet();
-            city = amapLocation.getCity();
-
-            Bundle locBundle = amapLocation.getExtras();
-
-            String desc = null;
-            if (locBundle != null) {
-                desc = locBundle.getString("desc");
-                String[] position = desc.split(" ");
-                keyword = position[position.length - 2];
-            }
-
-            navigationAdapter.notifyDataSetChanged();
-            //移除定位请求
-            mLocationManagerProxy.removeUpdates(this);
-            // 销毁定位
-            mLocationManagerProxy.destroy();
-        }
-    }
 
     @Override
     protected void onPause() {
