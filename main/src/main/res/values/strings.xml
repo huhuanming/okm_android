@@ -60,4 +60,16 @@
     <string name="instant_send">即时送</string>
     <string name="appoint_send">预约送达</string>
     <string name="order_note">订单备注</string>
+    <string name="shop_food_message">商品菜单</string>
+    <string name="shop_detail">店铺信息</string>
+    <string name="counts">数量：</string>
+    <string name="total_prices">总价：</string>
+    <string name="place_order">下订单</string>
+    <string name="see_evaluate">查看点评</string>
+    <string name="shop_address">地址：</string>
+    <string name="relation_number">联系电话：</string>
+    <string name="rmb_send">元/起送</string>
+    <string name="time_send">分/送达</string>
+    <string name="rmb_add">元/送餐费</string>
+    <string name="shop_announce">店家公告</string>
 </resources>
