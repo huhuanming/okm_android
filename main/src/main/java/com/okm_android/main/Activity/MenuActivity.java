@@ -24,12 +24,14 @@ import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 import com.okm_android.main.Adapter.MenuAdapter;
 import com.okm_android.main.R;
-import com.okm_android.main.Utils.ToastUtils;
 
 import java.util.ArrayList;
 
+<<<<<<< .merge_file_mS4Ajm
+=======
 
-public class MenuActivity extends FragmentActivity implements AMapLocationListener{
+>>>>>>> .merge_file_2ruhqp
+public class MenuActivity extends FragmentActivity implements AMapLocationListener {
 
     //    final String[] menuEntries = {"店铺管理","数据报表","订单管理","菜单管理","关于我们"};
     private ArrayList<String> menuEntries = new ArrayList<String>();
@@ -44,16 +46,25 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
     public static abstract interface MenuActionbarItemClick{
         public abstract void onClick(int id);
     }
+    //定位位置的经纬度和关键字
+    Double geoLat = 0.0;
+    Double geoLng = 0.0;
+    private String keyword = "";
+    private String city = "";
 
-    ArrayAdapter<String> navigationAdapter;
-
-    private double geoLat;
-    private double geoLng;
     private LocationManagerProxy mLocationManagerProxy;
-    private String keyword;
-    private String city;
+
+    //定位位置的经纬度和关键字
+    Double geoLat = 0.0;
+    Double geoLng = 0.0;
+    private String keyword = "";
+    private String city = "";
+
+    private LocationManagerProxy mLocationManagerProxy;
+
     private ActionBarDrawerToggle drawerToggle;
     private MenuAdapter adapter;
+    private ArrayAdapter<String> navigationAdapter;
     public static MenuActionbarItemClick  menuActionbarItemClick;
     private RelativeLayout relativeLayout;
     private int fragmentPositon = 0;
@@ -80,6 +91,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
         menuImage.add(R.drawable.order);
         menuImage.add(R.drawable.truck);
         menuImage.add(R.drawable.setting);
+
 
         final DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         final ListView navList = (ListView) findViewById(R.id.drawer);
@@ -155,6 +167,8 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                         Intent intent = new Intent();
                         intent.setClass(MenuActivity.this,PositionSearchActivity.class);
                         Bundle bundle = new Bundle();
+                        bundle.putDouble("geoLat", geoLat);
+                        bundle.putDouble("geoLng", geoLng);
                         bundle.putString("keyword", keyword);
                         bundle.putString("city", city);
                         intent.putExtras(bundle);
@@ -164,9 +178,32 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 return false;
             }
         };
+<<<<<<< .merge_file_mS4Ajm
         getActionBar().setListNavigationCallbacks(navigationAdapter, navigationListener);
 
     }
+=======
+        /** Setting dropdown items and item navigation listener for the actionbar */
+        getActionBar().setListNavigationCallbacks(navigationAdapter, navigationListener);
+
+        init();
+    }
+
+    /**
+     * 初始化定位
+     */
+    private void init() {
+
+        mLocationManagerProxy = LocationManagerProxy.getInstance(this);
+        mLocationManagerProxy.setGpsEnable(false);
+
+        //此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        //注意设置合适的定位时间的间隔，并且在合适时间调用removeUpdates()方法来取消定位请求
+        //在定位结束后，在合适的生命周期调用destroy()方法
+        //其中如果间隔时间为-1，则定位只定一次
+        mLocationManagerProxy.requestLocationData(
+                LocationProviderProxy.AMapNetwork, 60*1000, 15, this);
+>>>>>>> .merge_file_2ruhqp
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -180,7 +217,65 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 break;
 
         }
+
         setActionbarSpinner();
+    }
+    //高德地图信息
+    @Override
+    public void onProviderEnabled(String arg0) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void onLocationChanged(Location arg0) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onProviderDisabled(String arg0) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if(amapLocation != null && amapLocation.getAMapException().getErrorCode() == 0){
+            //获取位置信息
+            geoLat = amapLocation.getLatitude();
+            geoLng = amapLocation.getLongitude();
+            actions[0] = amapLocation.getStreet();
+            city = amapLocation.getCity();
+
+            Bundle locBundle = amapLocation.getExtras();
+
+            String desc = null;
+            if (locBundle != null) {
+                desc = locBundle.getString("desc");
+                String[] position = desc.split(" ");
+                keyword = position[position.length - 2];
+            }
+
+            navigationAdapter.notifyDataSetChanged();
+            //移除定位请求
+            mLocationManagerProxy.removeUpdates(this);
+            // 销毁定位
+            mLocationManagerProxy.destroy();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //移除定位请求
+        mLocationManagerProxy.removeUpdates(this);
+        // 销毁定位
+        mLocationManagerProxy.destroy();
+
     }
 
     /**
@@ -238,7 +333,6 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 desc = locBundle.getString("desc");
                 String[] position = desc.split(" ");
                 keyword = position[position.length - 2];
-                ToastUtils.setToast(MenuActivity.this,keyword);
             }
 
             navigationAdapter.notifyDataSetChanged();
