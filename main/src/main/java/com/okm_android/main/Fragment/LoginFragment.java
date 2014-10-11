@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.okm_android.main.ApiManager.ChenApiManager;
 import com.okm_android.main.ApiManager.MainApiManager;
-import com.okm_android.main.ApiManager.MerchantsApiManager;
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.Constant;
@@ -171,7 +171,7 @@ public class LoginFragment extends Fragment{
 
     private void userLogin(String phone_number,String password, final MainApiManager.FialedInterface fialedInterface)
     {
-        MerchantsApiManager.Login(phone_number, password).observeOn(AndroidSchedulers.mainThread())
+        ChenApiManager.Login(phone_number, password).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<RegisterBackData>() {
                     @Override
                     public void call(RegisterBackData registerBackData) {
@@ -237,7 +237,7 @@ public class LoginFragment extends Fragment{
 
     private void sinaLogin(String uid,String oauth_token,String oauth_type, final MainApiManager.FialedInterface fialedInterface)
     {
-        MerchantsApiManager.LoginByOauth(uid, oauth_token,oauth_type).observeOn(AndroidSchedulers.mainThread())
+        ChenApiManager.LoginByOauth(uid, oauth_token, oauth_type).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<RegisterBackData>() {
                     @Override
                     public void call(RegisterBackData registerBackData) {

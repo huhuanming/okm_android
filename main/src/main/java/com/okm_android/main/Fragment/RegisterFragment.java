@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.okm_android.main.ApiManager.ChenApiManager;
 import com.okm_android.main.ApiManager.MainApiManager;
-import com.okm_android.main.ApiManager.MerchantsApiManager;
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.UploadBackData;
 import com.okm_android.main.R;
@@ -143,7 +143,7 @@ public class RegisterFragment extends Fragment{
 
     private void getVerificationCode(String phone_number, final MainApiManager.FialedInterface fialedInterface)
     {
-        MerchantsApiManager.getMenuUploadBackData(phone_number).observeOn(AndroidSchedulers.mainThread())
+        ChenApiManager.getMenuUploadBackData(phone_number).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<UploadBackData>() {
                     @Override
                     public void call(UploadBackData uploadBackData) {
@@ -229,7 +229,7 @@ public class RegisterFragment extends Fragment{
 
     private void createUser(String phone_number,String password, String encryption_code, final MainApiManager.FialedInterface fialedInterface)
     {
-        MerchantsApiManager.createUser(phone_number, password, encryption_code).observeOn(AndroidSchedulers.mainThread())
+        ChenApiManager.createUser(phone_number, password, encryption_code).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<RegisterBackData>() {
                     @Override
                     public void call(RegisterBackData registerBackData) {

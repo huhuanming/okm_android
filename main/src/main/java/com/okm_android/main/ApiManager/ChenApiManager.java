@@ -16,9 +16,9 @@ import rx.subscriptions.Subscriptions;
 /**
  * Created by chen on 14-7-19.
  */
-public class MerchantsApiManager extends MainApiManager{
+public class ChenApiManager extends MainApiManager{
 
-    private static final MerchantsApiInterface.ApiManagerVerificationCode VerificationCodeapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerVerificationCode.class);
+    private static final ChenApiInterface.ApiManagerVerificationCode VerificationCodeapiManager = restAdapter.create(ChenApiInterface.ApiManagerVerificationCode.class);
     public static Observable<UploadBackData> getMenuUploadBackData(final String phone_number) {
         return Observable.create(new Observable.OnSubscribeFunc<UploadBackData>() {
             @Override
@@ -35,7 +35,7 @@ public class MerchantsApiManager extends MainApiManager{
         }).subscribeOn(Schedulers.threadPoolForIO());
     }
 
-    private static final MerchantsApiInterface.ApiManagerCreateUser CreateUserapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerCreateUser.class);
+    private static final ChenApiInterface.ApiManagerCreateUser CreateUserapiManager = restAdapter.create(ChenApiInterface.ApiManagerCreateUser.class);
     public static Observable<RegisterBackData> createUser(final String phone_number, final String password, final String encryption_code) {
         return Observable.create(new Observable.OnSubscribeFunc<RegisterBackData>() {
             @Override
@@ -52,7 +52,7 @@ public class MerchantsApiManager extends MainApiManager{
         }).subscribeOn(Schedulers.threadPoolForIO());
     }
 
-    private static final MerchantsApiInterface.ApiManagerLogin LoginapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerLogin.class);
+    private static final ChenApiInterface.ApiManagerLogin LoginapiManager = restAdapter.create(ChenApiInterface.ApiManagerLogin.class);
     public static Observable<RegisterBackData> Login(final String phone_number, final String password) {
         return Observable.create(new Observable.OnSubscribeFunc<RegisterBackData>() {
             @Override
@@ -69,7 +69,7 @@ public class MerchantsApiManager extends MainApiManager{
         }).subscribeOn(Schedulers.threadPoolForIO());
     }
 
-    private static final MerchantsApiInterface.ApiManagerLoginByOauth LoginByOauthapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerLoginByOauth.class);
+    private static final ChenApiInterface.ApiManagerLoginByOauth LoginByOauthapiManager = restAdapter.create(ChenApiInterface.ApiManagerLoginByOauth.class);
     public static Observable<RegisterBackData> LoginByOauth(final String uid, final String oauth_token, final String oauth_type) {
         return Observable.create(new Observable.OnSubscribeFunc<RegisterBackData>() {
             @Override
@@ -86,7 +86,7 @@ public class MerchantsApiManager extends MainApiManager{
         }).subscribeOn(Schedulers.threadPoolForIO());
     }
 
-    private static final MerchantsApiInterface.ApiManagerRestaurantsList RestaurantsListapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerRestaurantsList.class);
+    private static final ChenApiInterface.ApiManagerRestaurantsList RestaurantsListapiManager = restAdapter.create(ChenApiInterface.ApiManagerRestaurantsList.class);
     public static Observable<List<RestaurantBackData>> RestaurantsList(final String latitude, final String longitude, final String page) {
         return Observable.create(new Observable.OnSubscribeFunc<List<RestaurantBackData>>() {
             @Override
