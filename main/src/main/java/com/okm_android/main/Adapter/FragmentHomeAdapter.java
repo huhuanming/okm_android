@@ -5,8 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.R;
+
+import java.util.List;
 
 /**
  * Created by chen on 14-9-24.
@@ -15,10 +19,12 @@ public class FragmentHomeAdapter extends BaseAdapter{
 
     //	内部类实现BaseAdapter  ，自定义适配器
     private Context context;
+    private List<RestaurantBackData> restaurantBackDatas;
 
-    public FragmentHomeAdapter(Context context)
+    public FragmentHomeAdapter(Context context, List<RestaurantBackData> restaurantBackDatas )
     {
         this.context = context;
+        this.restaurantBackDatas = restaurantBackDatas;
     }
 
 
@@ -31,7 +37,7 @@ public class FragmentHomeAdapter extends BaseAdapter{
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 6;
+        return restaurantBackDatas.size();
     }
 
     @Override
@@ -53,22 +59,27 @@ public class FragmentHomeAdapter extends BaseAdapter{
         if(convertView == null)
         {
             convertView = LayoutInflater.from(context).inflate(R.layout.fragment_home_item, null);
-//            holder = new ViewHolder();
-//            holder.textView = (TextView) convertView
-//                    .findViewById(R.id.activity_menu_text);
-//            holder.img = (ImageView)convertView.findViewById(R.id.activity_menu_img);
-//            convertView.setTag(holder);
+            holder = new ViewHolder();
+            holder.home_item_name = (TextView) convertView
+                    .findViewById(R.id.home_item_name);
+            holder.home_item_price = (TextView)convertView.findViewById(R.id.home_item_price);
+            holder.home_item_time = (TextView)convertView.findViewById(R.id.home_item_time);
+            convertView.setTag(holder);
         }
         else
         {
             holder = (ViewHolder) convertView.getTag();
         }
 
-//        holder.textView.setText(menuEntries.get(position));
-//        holder.img.setImageResource(menuImage.get(position));
+        holder.home_item_name.setText(restaurantBackDatas.get(position).name);
+        holder.home_item_price.setText("人均: "+restaurantBackDatas.get(position).status.start_shipping_fee+"元");
+        holder.home_item_time.setText("送餐时间: "+restaurantBackDatas.get(position).status.shipping_time+"分钟");
 
         return convertView;
     }
     class ViewHolder {
+        TextView home_item_name;
+        TextView home_item_price;
+        TextView home_item_time;
     }
 }

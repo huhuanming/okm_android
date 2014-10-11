@@ -31,6 +31,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/home_item_name"
                 android:textSize="18sp"
                 android:textColor="#656565"
                 android:layout_width="wrap_content"
@@ -38,6 +39,7 @@
                 android:text="邻家小厨"
                 />
             <TextView
+                android:id="@+id/home_item_price"
                 android:textSize="13.5sp"
                 android:textColor="#989898"
                 android:layout_width="wrap_content"
@@ -45,6 +47,7 @@
                 android:text="人均: 20元"
                 />
             <TextView
+                android:id="@+id/home_item_time"
                 android:textSize="13.5sp"
                 android:textColor="#989898"
                 android:layout_width="wrap_content"

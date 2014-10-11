@@ -7,6 +7,7 @@ public class RestaurantBackData {
     public String rid;
     public String name;
     public String avatar;
+    public Status status;
 
     public static class Status{
         public String start_shipping_fee;

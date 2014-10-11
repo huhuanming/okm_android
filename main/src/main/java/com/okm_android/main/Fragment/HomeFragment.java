@@ -8,9 +8,11 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.amap.api.location.AMapLocation;
+import com.okm_android.main.Activity.FoodMenuActivity;
 import com.okm_android.main.Activity.MenuActivity;
 import com.okm_android.main.Activity.SearchActivity;
 import com.okm_android.main.Activity.ShakeActivity;
@@ -74,7 +77,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         getActivity().getActionBar().setDisplayShowTitleEnabled(false);
         getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         listview = (ListView)parentView.findViewById(R.id.fragment_home_listview);
-        adapter = new FragmentHomeAdapter(getActivity());
+        adapter = new FragmentHomeAdapter(getActivity(), restaurantBackDatas);
         listview.setAdapter(adapter);
 
         NotificationCenter.getInstance().addObserver("restaurant",this,"restaurantData");
@@ -92,7 +95,13 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                 {
                     //获取成功
                     case Constant.MSG_SUCCESS:
-                        restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
+//                        if(msg.obj != null)
+//                        {
+                            restaurantBackDatas.clear();
+                            restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
+                            adapter.notifyDataSetChanged();
+//                        }
+
 
                         break;
                 }
@@ -100,6 +109,18 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             }
 
         };
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("rid", restaurantBackDatas.get(position).rid);
+                intent.putExtras(bundle);
+                intent.setClass(getActivity(), FoodMenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return parentView;
     }
@@ -220,6 +241,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             @Override
             public void onSuccess(Object object) {
                 // 获取一个Message对象，设置what为1
+//                List<RestaurantBackData> list = (List<RestaurantBackData>)object;
+                Log.e("sss", object.toString()+"dd");
                 Message msg = Message.obtain();
                 msg.obj = object;
                 msg.what = Constant.MSG_SUCCESS;
