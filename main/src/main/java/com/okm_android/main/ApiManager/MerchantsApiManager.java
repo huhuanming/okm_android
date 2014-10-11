@@ -2,7 +2,10 @@ package com.okm_android.main.ApiManager;
 
 
 import com.okm_android.main.Model.RegisterBackData;
+import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.Model.UploadBackData;
+
+import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
@@ -73,6 +76,23 @@ public class MerchantsApiManager extends MainApiManager{
             public Subscription onSubscribe(Observer<? super RegisterBackData> observer) {
                 try {
                     observer.onNext(LoginByOauthapiManager.loginByOauth(uid, oauth_token,oauth_type));
+                    observer.onCompleted();
+                } catch (Exception e) {
+                    observer.onError(e);
+                }
+
+                return Subscriptions.empty();
+            }
+        }).subscribeOn(Schedulers.threadPoolForIO());
+    }
+
+    private static final MerchantsApiInterface.ApiManagerRestaurantsList RestaurantsListapiManager = restAdapter.create(MerchantsApiInterface.ApiManagerRestaurantsList.class);
+    public static Observable<List<RestaurantBackData>> RestaurantsList(final String latitude, final String longitude, final String page) {
+        return Observable.create(new Observable.OnSubscribeFunc<List<RestaurantBackData>>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super List<RestaurantBackData>> observer) {
+                try {
+                    observer.onNext(RestaurantsListapiManager.RestaurantsList(latitude, longitude,page));
                     observer.onCompleted();
                 } catch (Exception e) {
                     observer.onError(e);

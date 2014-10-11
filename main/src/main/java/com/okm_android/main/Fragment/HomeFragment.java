@@ -3,6 +3,8 @@ package com.okm_android.main.Fragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,15 +18,25 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.amap.api.location.AMapLocation;
 import com.okm_android.main.Activity.MenuActivity;
 import com.okm_android.main.Activity.SearchActivity;
 import com.okm_android.main.Activity.ShakeActivity;
 import com.okm_android.main.Adapter.FragmentHomeAdapter;
+import com.okm_android.main.ApiManager.MainApiManager;
+import com.okm_android.main.ApiManager.MerchantsApiManager;
+import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.AddObserver.NotificationCenter;
+import com.okm_android.main.Utils.Constant;
+import com.okm_android.main.Utils.ErrorUtils;
 import com.okm_android.main.Utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.android.concurrency.AndroidSchedulers;
+import rx.util.functions.Action1;
 
 /**
  * Created by chen on 14-9-22.
@@ -49,6 +61,11 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     private ListView listview;
     private FragmentHomeAdapter adapter;
 
+    private int page = 0;
+    private Handler handler;
+
+    private List<RestaurantBackData> restaurantBackDatas = new ArrayList<RestaurantBackData>();
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,8 +77,29 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         adapter = new FragmentHomeAdapter(getActivity());
         listview.setAdapter(adapter);
 
+        NotificationCenter.getInstance().addObserver("restaurant",this,"restaurantData");
+
         init();
         initSpinner();
+
+        handler = new Handler(){
+
+            @Override
+            public void handleMessage(Message msg) {
+                // TODO Auto-generated method stub
+
+                switch(msg.what)
+                {
+                    //获取成功
+                    case Constant.MSG_SUCCESS:
+                        restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
+
+                        break;
+                }
+                super.handleMessage(msg);
+            }
+
+        };
 
         return parentView;
     }
@@ -174,6 +212,69 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 //        });
 //        myThread.start(); // 用来更细致的划分  比如页面失去焦点时候停止子线程恢复焦点时再开启
 
+    }
+
+    public void restaurantData(AMapLocation amapLocation)
+    {
+        getRestaurantDta(amapLocation.getLatitude()+"", amapLocation.getLongitude()+"", page+"", new MainApiManager.FialedInterface() {
+            @Override
+            public void onSuccess(Object object) {
+                // 获取一个Message对象，设置what为1
+                Message msg = Message.obtain();
+                msg.obj = object;
+                msg.what = Constant.MSG_SUCCESS;
+                // 发送这个消息到消息队列中
+                handler.sendMessage(msg);
+            }
+
+            @Override
+            public void onFailth(int code) {
+                ErrorUtils.setError(code, getActivity());
+//                progressbar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onOtherFaith() {
+//                progressbar.setVisibility(View.GONE);
+                ToastUtils.setToast(getActivity(), "发生错误");
+            }
+
+            @Override
+            public void onNetworkError() {
+//                progressbar.setVisibility(View.GONE);
+                ToastUtils.setToast(getActivity(), "网络错误");
+            }
+        });
+    }
+
+    private void getRestaurantDta(String latitude,String longitude,String page, final MainApiManager.FialedInterface fialedInterface)
+    {
+        MerchantsApiManager.RestaurantsList(latitude, longitude, page).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<RestaurantBackData>>() {
+                    @Override
+                    public void call(List<RestaurantBackData> restaurantBackDatas) {
+                        fialedInterface.onSuccess(restaurantBackDatas);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+
+                        if(throwable.getClass().getName().toString().indexOf("RetrofitError") != -1) {
+                            retrofit.RetrofitError e = (retrofit.RetrofitError) throwable;
+                            if(e.isNetworkError())
+                            {
+                                fialedInterface.onNetworkError();
+
+                            }
+                            else {
+                                fialedInterface.onFailth(e.getResponse().getStatus());
+                            }
+                        }
+                        else{
+                            fialedInterface.onOtherFaith();
+                        }
+                    }
+                });
     }
 
 

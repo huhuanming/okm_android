@@ -24,6 +24,7 @@ import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 import com.okm_android.main.Adapter.MenuAdapter;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.AddObserver.NotificationCenter;
 
 import java.util.ArrayList;
 
@@ -44,8 +45,8 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
     }
 
     //定位位置的经纬度和关键字
-    Double geoLat = 0.0;
-    Double geoLng = 0.0;
+    double geoLat = 0.0;
+    double geoLng = 0.0;
     private String keyword = "";
     private String city = "";
 
@@ -238,7 +239,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 String[] position = desc.split(" ");
                 keyword = position[position.length - 2];
             }
-
+            NotificationCenter.getInstance().postNotification("restaurant",amapLocation);
             navigationAdapter.notifyDataSetChanged();
             //移除定位请求
             mLocationManagerProxy.removeUpdates(this);
