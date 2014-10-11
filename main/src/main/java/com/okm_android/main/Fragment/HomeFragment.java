@@ -8,7 +8,6 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,12 +94,12 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                 {
                     //获取成功
                     case Constant.MSG_SUCCESS:
-//                        if(msg.obj != null)
-//                        {
+                        if(msg.obj != null)
+                        {
                             restaurantBackDatas.clear();
                             restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
                             adapter.notifyDataSetChanged();
-//                        }
+                        }
 
 
                         break;
@@ -241,8 +240,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             @Override
             public void onSuccess(Object object) {
                 // 获取一个Message对象，设置what为1
-//                List<RestaurantBackData> list = (List<RestaurantBackData>)object;
-                Log.e("sss", object.toString()+"dd");
                 Message msg = Message.obtain();
                 msg.obj = object;
                 msg.what = Constant.MSG_SUCCESS;
