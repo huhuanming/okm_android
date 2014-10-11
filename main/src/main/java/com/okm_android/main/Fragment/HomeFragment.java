@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -66,6 +67,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     private int page = 0;
     private Handler handler;
 
+    private AMapLocation amapLocation;
+
     private List<RestaurantBackData> restaurantBackDatas = new ArrayList<RestaurantBackData>();
 
 
@@ -96,12 +99,9 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                     case Constant.MSG_SUCCESS:
                         if(msg.obj != null)
                         {
-                            restaurantBackDatas.clear();
                             restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
                             adapter.notifyDataSetChanged();
                         }
-
-
                         break;
                 }
                 super.handleMessage(msg);
@@ -118,6 +118,22 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                 intent.putExtras(bundle);
                 intent.setClass(getActivity(), FoodMenuActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        listview.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+                //判断是否滚动到底部
+                if (absListView.getLastVisiblePosition() == absListView.getCount() - 1) {
+                    page++;
+                    restaurantData(amapLocation);
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView,  int firstVisibleItem, int ItemCount, int totalItemCount) {
+
             }
         });
 
@@ -236,6 +252,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     public void restaurantData(AMapLocation amapLocation)
     {
+        this.amapLocation = amapLocation;
         getRestaurantDta(amapLocation.getLatitude()+"", amapLocation.getLongitude()+"", page+"", new MainApiManager.FialedInterface() {
             @Override
             public void onSuccess(Object object) {
