@@ -3,10 +3,11 @@ package com.okm_android.main.Fragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.okm_android.main.ApiManager.MerchantsApiManager;
 import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.AddObserver.NotificationCenter;
+import com.okm_android.main.Utils.Constant;
 import com.okm_android.main.Utils.ErrorUtils;
 import com.okm_android.main.Utils.ToastUtils;
 
@@ -60,6 +62,9 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     private FragmentHomeAdapter adapter;
 
     private int page = 0;
+    private Handler handler;
+
+    private List<RestaurantBackData> restaurantBackDatas = new ArrayList<RestaurantBackData>();
 
 
     @Override
@@ -76,6 +81,25 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
         init();
         initSpinner();
+
+        handler = new Handler(){
+
+            @Override
+            public void handleMessage(Message msg) {
+                // TODO Auto-generated method stub
+
+                switch(msg.what)
+                {
+                    //获取成功
+                    case Constant.MSG_SUCCESS:
+                        restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
+
+                        break;
+                }
+                super.handleMessage(msg);
+            }
+
+        };
 
         return parentView;
     }
@@ -192,14 +216,15 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     public void restaurantData(AMapLocation amapLocation)
     {
-
-        ToastUtils.setToast(getActivity(),"ddffd");
         getRestaurantDta(amapLocation.getLatitude()+"", amapLocation.getLongitude()+"", page+"", new MainApiManager.FialedInterface() {
             @Override
             public void onSuccess(Object object) {
-                List<RestaurantBackData> restaurantBackDatas = (List<RestaurantBackData>)object;
-                Log.e("ssss",restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).name);
-//                ToastUtils.setToast(getActivity(),restaurantBackDatas.size()+"  "+restaurantBackDatas.get(0).avatar);
+                // 获取一个Message对象，设置what为1
+                Message msg = Message.obtain();
+                msg.obj = object;
+                msg.what = Constant.MSG_SUCCESS;
+                // 发送这个消息到消息队列中
+                handler.sendMessage(msg);
             }
 
             @Override
