@@ -208,7 +208,7 @@ public class BootstrapButton extends FrameLayout {
 		}
 		
 		
-		//set up font sizes and padding for different button sizes
+		//set up font sizes and padding for different button_order_place_normal sizes
 		if(size.equals("large")){
 			fontSize = 20.0f;
 			paddingA = (int) (15 *scale + 0.5f);;
@@ -348,8 +348,8 @@ public class BootstrapButton extends FrameLayout {
 	
 	
 	/**
-	 * Changes the button text
-	 * @param text - String value for what is displayed on the button
+	 * Changes the button_order_place_normal text
+	 * @param text - String value for what is displayed on the button_order_place_normal
 	 */
 	public void setText(String text) {
 		lblMiddle.setText(text);
@@ -391,7 +391,7 @@ public class BootstrapButton extends FrameLayout {
 	
 	/**
 	 * Changes the type of BootstrapButton
-	 * @param bootstrapType - String value for the type of button e.g. "primary"
+	 * @param bootstrapType - String value for the type of button_order_place_normal e.g. "primary"
 	 */
 	public void setBootstrapType(String bootstrapType) {
 
@@ -428,7 +428,7 @@ public class BootstrapButton extends FrameLayout {
 	
 	
 	/**
-	 * Changes the gravity for the text on a bootstrap button that is not wrap_content
+	 * Changes the gravity for the text on a bootstrap button_order_place_normal that is not wrap_content
 	 * @param gravity - string for either center, right, or left.
 	 */
 	public void setTextGravity(String gravity) {

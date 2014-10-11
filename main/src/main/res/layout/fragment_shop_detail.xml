@@ -159,6 +159,7 @@
                         android:text="@string/see_evaluate"
                         android:textSize="13.5sp"
                         android:textColor="#25ade8"
+                        android:background="@drawable/radius"
                         android:gravity="center"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"

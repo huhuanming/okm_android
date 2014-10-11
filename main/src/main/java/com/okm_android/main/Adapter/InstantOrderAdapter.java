@@ -40,18 +40,18 @@ public class InstantOrderAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
-        if (convertView == null) {
+       // if (convertView == null) {
             holder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.order_food_item, null);
             holder.name = (TextView) convertView.findViewById(R.id.food_name);
             holder.number = (TextView) convertView.findViewById(R.id.food_count);
             holder.money = (TextView) convertView.findViewById(R.id.money);
-            //得到条目中的子组件
+            /*//得到条目中的子组件
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
-        //从list对象中为子组件赋值
+        //从list对象中为子组件赋值*/
         holder.name.setText(listItems.get(position).get("name").toString());
         holder.number.setText(listItems.get(position).get("number").toString());
         holder.money.setText(listItems.get(position).get("money").toString());
