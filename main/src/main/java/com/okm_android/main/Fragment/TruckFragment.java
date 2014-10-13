@@ -1,6 +1,5 @@
 package com.okm_android.main.Fragment;
 
-import android.app.ActionBar;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -31,11 +30,14 @@ public class TruckFragment extends Fragment {
     private AddressAdapter mAdapter;
     private SwipeMenuListView mListView;
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_address, container, false);
-        getActivity().invalidateOptionsMenu();
-        getActivity().getActionBar().setDisplayShowTitleEnabled(true);
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
         mListView = (SwipeMenuListView) parentView.findViewById(R.id.listView);
         mAppList=get_search();

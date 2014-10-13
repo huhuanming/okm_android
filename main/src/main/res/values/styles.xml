@@ -15,10 +15,11 @@
     <style name="MyTheme" parent="@style/AppTheme">
         <item name="android:windowActionBar">true</item>
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        <item name="android:dropDownListViewStyle">@style/mySpinnerStyle</item>
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
     <style name="ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:background">@color/bbutton_info_edge</item>
+        <item name="android:background">@color/bbutton_info_pressed_edge</item>
         <item name="android:titleTextStyle">@style/AcBar_titleStyle</item>
         //替换actionbar背景图片
         <!--
@@ -26,6 +27,12 @@
                 <item name="android:displayOptions">showTitle</item> //只显示title 不显示logo
 
         -->
+    </style>
+
+
+    <style name="mySpinnerStyle" parent="android:style/Widget.ListView.DropDown">
+        <item name="android:divider">#808080</item>
+        <item name="android:dividerHeight">1dp</item>
     </style>
     <style name="AcBar_titleStyle">
         <item name="android:textColor">#ffffff</item>

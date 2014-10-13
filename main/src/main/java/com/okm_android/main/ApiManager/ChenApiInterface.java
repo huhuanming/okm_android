@@ -2,6 +2,7 @@ package com.okm_android.main.ApiManager;
 
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.RestaurantBackData;
+import com.okm_android.main.Model.RestaurantTypeData;
 import com.okm_android.main.Model.UploadBackData;
 
 import java.util.List;
@@ -37,5 +38,10 @@ public class ChenApiInterface {
     public interface ApiManagerRestaurantsList {
         @GET("/restaurants")
         List<RestaurantBackData> RestaurantsList(@Query("latitude") String latitude, @Query("longitude") String longitude, @Query("page") String page);
+    }
+
+    public interface ApiManagerRestaurantsTypes {
+        @GET("/restaurant_types")
+        List<RestaurantTypeData> RestaurantsTypes();
     }
 }

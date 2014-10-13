@@ -3,6 +3,7 @@ package com.okm_android.main.ApiManager;
 
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.RestaurantBackData;
+import com.okm_android.main.Model.RestaurantTypeData;
 import com.okm_android.main.Model.UploadBackData;
 
 import java.util.List;
@@ -103,5 +104,20 @@ public class ChenApiManager extends MainApiManager{
         }).subscribeOn(Schedulers.threadPoolForIO());
     }
 
+    private static final ChenApiInterface.ApiManagerRestaurantsTypes RestaurantsTypesapiManager = restAdapter.create(ChenApiInterface.ApiManagerRestaurantsTypes.class);
+    public static Observable<List<RestaurantTypeData>> RestaurantsTypes() {
+        return Observable.create(new Observable.OnSubscribeFunc<List<RestaurantTypeData>>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super List<RestaurantTypeData>> observer) {
+                try {
+                    observer.onNext(RestaurantsTypesapiManager.RestaurantsTypes());
+                    observer.onCompleted();
+                } catch (Exception e) {
+                    observer.onError(e);
+                }
 
+                return Subscriptions.empty();
+            }
+        }).subscribeOn(Schedulers.threadPoolForIO());
+    }
 }
