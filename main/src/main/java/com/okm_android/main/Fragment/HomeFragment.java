@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -265,25 +266,25 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
             }
         });
 
-//        // 开启线程无限自动移动
-//        Thread myThread = new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                while (!isStop) {
-//                    //每个两秒钟发一条消息到主线程，更新viewpager界面
-//                    SystemClock.sleep(3000);
-//                    getActivity().runOnUiThread(new Runnable() {
-//                        public void run() {
-//                            // 此方法在主线程中执行
-//                            int newindex = viewPager.getCurrentItem() + 1;
-//                            viewPager.setCurrentItem(newindex);
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//        myThread.start(); // 用来更细致的划分  比如页面失去焦点时候停止子线程恢复焦点时再开启
+        // 开启线程无限自动移动
+        Thread myThread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!isStop) {
+                    //每个两秒钟发一条消息到主线程，更新viewpager界面
+                    SystemClock.sleep(3000);
+                    getActivity().runOnUiThread(new Runnable() {
+                        public void run() {
+                            // 此方法在主线程中执行
+                            int newindex = viewPager.getCurrentItem() + 1;
+                            viewPager.setCurrentItem(newindex);
+                        }
+                    });
+                }
+            }
+        });
+        myThread.start(); // 用来更细致的划分  比如页面失去焦点时候停止子线程恢复焦点时再开启
 
     }
 

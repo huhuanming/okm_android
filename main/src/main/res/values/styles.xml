@@ -50,7 +50,7 @@
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
     <style name="Shake_ActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="android:background">#25ADE8</item>
+        <item name="android:background">#00a3e9</item>
         <item name="android:titleTextStyle">@style/AcBar_titleStyle</item>
         //替换actionbar背景图片
         <!--
