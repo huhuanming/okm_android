@@ -21,7 +21,6 @@ public class FinishOrderFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_finish_order,container,false);
         init();
-
         listView.setAdapter(adapter);
         return parentView;
     }

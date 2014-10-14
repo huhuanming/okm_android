@@ -27,6 +27,7 @@ import com.okm_android.main.R;
 import com.okm_android.main.Utils.AddObserver.NotificationCenter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MenuActivity extends FragmentActivity implements AMapLocationListener {
 
@@ -40,6 +41,8 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
             "com.okm_android.main.Fragment.TruckFragment",
             "com.okm_android.main.Fragment.SettingFragment"
     };
+    private Fragment currentFragment;
+    private Fragment[] hidefragments = new Fragment[]{null,null,null,null,null};
     public static abstract interface MenuActionbarItemClick{
         public abstract void onClick(int id);
     }
@@ -120,21 +123,35 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                     public void onDrawerClosed(View drawerView){
                         super.onDrawerClosed(drawerView);
                         fragmentPositon = pos;
-                        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-                        Fragment fragment = Fragment.instantiate(MenuActivity.this, fragments[pos]);
-                        tx.replace(R.id.main, fragment);
-                        getActionBar().setTitle(menuEntries.get(pos));
+                        Fragment fragment = null;
+                        if(hidefragments[pos] == null)
+                        {
+                            fragment = Fragment.instantiate(MenuActivity.this, fragments[pos]);
+                            hidefragments[pos] = fragment;
+                        }
+//                        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 
-                        tx.commit();
+//                        tx.replace(R.id.main, fragment);
+                        getActionBar().setTitle(menuEntries.get(pos));
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        if (!hidefragments[pos].isAdded()) {    // 先判断是否被add过
+                            transaction.hide(currentFragment).add(R.id.main, hidefragments[pos]).commit(); // 隐藏当前的fragment，add下一个到Activity中
+                        } else {
+                            transaction.hide(currentFragment).show(hidefragments[pos]).commit(); // 隐藏当前的fragment，显示下一个
+                        }
+                        currentFragment = hidefragments[pos];
+
+//                        tx.commit();
                     }
                 });
                 drawer.closeDrawer(relativeLayout);
             }
         });
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        tx.replace(R.id.main,Fragment.instantiate(MenuActivity.this, fragments[0]));
-        tx.commit();
-
+        Fragment fragment = Fragment.instantiate(MenuActivity.this, fragments[0]);
+        tx.add(R.id.main,fragment).commit();
+        currentFragment = fragment;
+        hidefragments[0] = fragment;
 
         setActionbarSpinner();
 
@@ -194,6 +211,12 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 geoLat = data.getExtras().getDouble("geoLat");
                 geoLng = data.getExtras().getDouble("geoLng");
                 actions[0] = data.getExtras().getString("title");
+                keyword = data.getExtras().getString("title");
+                HashMap<String,String> map = new HashMap<String, String>();
+                map.put("geoLat",geoLat+"");
+                map.put("geoLng",geoLng+"");
+                map.put("type","1");
+                NotificationCenter.getInstance().postNotification("restaurant",map);
                 break;
 
         }
@@ -239,7 +262,11 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
                 String[] position = desc.split(" ");
                 keyword = position[position.length - 2];
             }
-            NotificationCenter.getInstance().postNotification("restaurant",amapLocation);
+            HashMap<String,String> map = new HashMap<String, String>();
+            map.put("geoLat",geoLat+"");
+            map.put("geoLng",geoLng+"");
+            map.put("type","0");
+            NotificationCenter.getInstance().postNotification("restaurant",map);
             navigationAdapter.notifyDataSetChanged();
             //移除定位请求
             mLocationManagerProxy.removeUpdates(this);
@@ -302,7 +329,9 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
         shackMenuItem.setVisible(false);
         switch (fragmentPositon){
             case 0:{
-
+                getActionBar().setDisplayShowTitleEnabled(false);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+                setActionbarSpinner();
                 searchMenuItem.setVisible(true);
                 shackMenuItem.setVisible(true);
                 adapter.notifyDataSetChanged();
@@ -310,6 +339,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
             break;
             case 1:{
                 getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 getActionBar().setTitle("个人资料");
                 shackMenuItem.setVisible(false);
                 searchMenuItem.setVisible(false);
@@ -318,6 +348,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
             break;
             case 2:{
                 getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 getActionBar().setTitle("我的订单");
                 shackMenuItem.setVisible(false);
                 searchMenuItem.setVisible(false);
@@ -326,6 +357,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
             break;
             case 3:{
                 getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 getActionBar().setTitle("送货地址");
                 shackMenuItem.setVisible(false);
                 searchMenuItem.setVisible(false);
@@ -334,6 +366,7 @@ public class MenuActivity extends FragmentActivity implements AMapLocationListen
             break;
             case 4:{
                 getActionBar().setDisplayShowTitleEnabled(true);
+                getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
                 getActionBar().setTitle("设置");
                 shackMenuItem.setVisible(false);
                 searchMenuItem.setVisible(false);

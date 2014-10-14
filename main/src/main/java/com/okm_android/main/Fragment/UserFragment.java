@@ -1,6 +1,5 @@
 package com.okm_android.main.Fragment;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,10 +14,13 @@ import com.okm_android.main.R;
 public class UserFragment extends Fragment {
     private View parentView;
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getActivity().getActionBar().setDisplayShowTitleEnabled(true);
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        getActivity().invalidateOptionsMenu();
         parentView = inflater.inflate(R.layout.fragment_user, container, false);
         return parentView;
     }

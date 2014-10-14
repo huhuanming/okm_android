@@ -8,9 +8,9 @@
     <ListView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
         android:id="@+id/time_sorting_listview"
-        android:divider="#EBEBEB"
+        android:divider="#cccccc"
+        android:scrollbars="none"
         android:dividerHeight="1dp"
         />
 </LinearLayout>

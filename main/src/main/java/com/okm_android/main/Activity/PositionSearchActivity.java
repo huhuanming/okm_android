@@ -65,7 +65,7 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
                 Bundle bundle = new Bundle();
                 bundle.putDouble("geoLat",poiItems.get(position).getLatLonPoint().getLatitude());
                 bundle.putDouble("geoLng",poiItems.get(position).getLatLonPoint().getLongitude());
-                bundle.putString("title",poiItems.get(position).getTitle());
+                bundle.putString("title", poiItems.get(position).getTitle());
                 intent.putExtras(bundle);
                 setResult(201, intent);
                 PositionSearchActivity.this.finish();
@@ -154,6 +154,7 @@ public class PositionSearchActivity extends Activity implements PoiSearch.OnPoiS
                     // 取得第一页的poiitem数据，页数从数字0开始
                     poiItems.clear();
                     List<PoiItem> list = poiResult.getPois();
+
                     if(list != null)
                     {
                         poiItems.addAll(list);

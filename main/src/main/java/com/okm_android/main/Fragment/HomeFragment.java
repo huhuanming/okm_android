@@ -25,8 +25,8 @@ import com.okm_android.main.Activity.MenuActivity;
 import com.okm_android.main.Activity.SearchActivity;
 import com.okm_android.main.Activity.ShakeActivity;
 import com.okm_android.main.Adapter.FragmentHomeAdapter;
+import com.okm_android.main.ApiManager.ChenApiManager;
 import com.okm_android.main.ApiManager.MainApiManager;
-import com.okm_android.main.ApiManager.MerchantsApiManager;
 import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.AddObserver.NotificationCenter;
@@ -100,6 +100,8 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                             restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
                             adapter.notifyDataSetChanged();
                         }
+
+
                         break;
                 }
                 super.handleMessage(msg);
@@ -267,7 +269,7 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
 
     private void getRestaurantDta(String latitude,String longitude,String page, final MainApiManager.FialedInterface fialedInterface)
     {
-        MerchantsApiManager.RestaurantsList(latitude, longitude, page).observeOn(AndroidSchedulers.mainThread())
+        ChenApiManager.RestaurantsList(latitude, longitude, page).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<RestaurantBackData>>() {
                     @Override
                     public void call(List<RestaurantBackData> restaurantBackDatas) {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="0.2.0" >
+        <source path="/home/hu/文档/android project/okm_android/main/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/0.2.0/assets" />
+    </dataSet>
+    <dataSet config="1.0.2" >
+        <source path="/home/hu/文档/android project/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/assets" />
+    </dataSet>
+    <dataSet config="1.2.0" >
+        <source path="/home/hu/文档/android project/okm_android/main/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.0/assets" />
+    </dataSet>
+    <dataSet config="19.1.0" >
+        <source path="/home/hu/文档/android project/okm_android/main/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="/home/hu/文档/android project/okm_android/main/src/main/assets" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/home/hu/文档/android project/okm_android/main/src/debug/assets" />
+    </dataSet>
+
+</merger>

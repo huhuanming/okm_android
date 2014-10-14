@@ -1,6 +1,5 @@
 package com.okm_android.main.Fragment;
 
-import android.app.ActionBar;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,11 +25,14 @@ public class OrderFragment extends Fragment {
             "com.okm_android.main.Fragment.FinishOrderFragment"
     };
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.fragment_order,container,false);
-        getActivity().getActionBar().setDisplayShowTitleEnabled(true);
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        getActivity().invalidateOptionsMenu();
 
         init();
 
