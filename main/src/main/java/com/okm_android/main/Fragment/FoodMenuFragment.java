@@ -1,8 +1,6 @@
 package com.okm_android.main.Fragment;
 
 import android.app.ActionBar;
-import android.content.ClipData;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,29 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.amap.api.location.AMapLocation;
 import com.okm_android.main.Adapter.FoodMenuAdapter;
 import com.okm_android.main.ApiManager.MainApiManager;
-import com.okm_android.main.ApiManager.MerchantsApiManager;
-import com.okm_android.main.ApiManager.QinApiInterface;
 import com.okm_android.main.ApiManager.QinApiManager;
 import com.okm_android.main.Model.FoodDataResolve;
-import com.okm_android.main.Model.RestaurantBackData;
 import com.okm_android.main.Model.RestaurantMenu;
 import com.okm_android.main.R;
-import com.okm_android.main.Utils.AddObserver.NotificationCenter;
 import com.okm_android.main.Utils.Constant;
 import com.okm_android.main.Utils.ErrorUtils;
 import com.okm_android.main.Utils.ToastUtils;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import retrofit.RestAdapter;
 import rx.android.concurrency.AndroidSchedulers;
 import rx.util.functions.Action1;
 
