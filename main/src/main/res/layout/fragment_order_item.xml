@@ -2,29 +2,38 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@drawable/background_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"
+        />
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_marginLeft="22.5dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="陈宏的订单"
-            android:textColor="#000000"
-            android:textSize="18sp"
+            android:textColor="#333333"
+            android:textSize="15.75sp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="11/06 19:47"
-            android:textColor="#989898"
-            android:textSize="14sp"
+            android:textColor="#333333"
+            android:textSize="11.25sp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="5dp"
@@ -33,42 +42,45 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_margin="5dp"
-        android:background="#EBEBEB"
+        android:layout_marginRight="22dp"
+        android:layout_marginLeft="22dp"
+        android:background="#cccccc"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="陈宏"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#333333"
+        android:textSize="13.5sp"
+        android:layout_marginLeft="22.5dp"
         />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="22.5dp"
+        android:layout_marginRight="28dp"
         android:layout_height="wrap_content"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1111111111"
-            android:textColor="#989898"
-            android:textSize="16sp"
+            android:textColor="#999999"
+            android:textSize="11.25sp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+
             />
         <TextView
             android:id="@+id/order_item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="¥36"
-            android:textColor="#ffd2322d"
-            android:textSize="16sp"
+            android:textColor="#e52e2e"
+            android:textSize="13.5sp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
             />
 
         <TextView
@@ -76,17 +88,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="总价: "
-            android:textColor="#989898"
-            android:textSize="16sp"
+            android:textColor="#333333"
+            android:textSize="13.5sp"
             />
     </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="22.5dp"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:text="成都犀浦"
-        android:textColor="#989898"
-        android:textSize="16sp"
+        android:textColor="#999999"
+        android:textSize="11.25sp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#cccccc"
         />
 </LinearLayout>

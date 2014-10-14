@@ -3,6 +3,7 @@ package com.okm_android.main.ApiManager;
 
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.RestaurantBackData;
+import com.okm_android.main.Model.RestaurantOrderBackData;
 import com.okm_android.main.Model.RestaurantTypeData;
 import com.okm_android.main.Model.UploadBackData;
 
@@ -111,6 +112,25 @@ public class ChenApiManager extends MainApiManager{
             public Subscription onSubscribe(Observer<? super List<RestaurantTypeData>> observer) {
                 try {
                     observer.onNext(RestaurantsTypesapiManager.RestaurantsTypes());
+                    observer.onCompleted();
+                } catch (Exception e) {
+                    observer.onError(e);
+                }
+
+                return Subscriptions.empty();
+            }
+        }).subscribeOn(Schedulers.threadPoolForIO());
+    }
+
+    private static final ChenApiInterface.ApiManagerRestaurantsOrders RestaurantsOrdersapiManager = restAdapter.create(ChenApiInterface.ApiManagerRestaurantsOrders.class);
+    public static Observable<RestaurantOrderBackData> RestaurantsOrders(final String restaurant_id, final String access_token, final String foods,
+                                                                        final String ship_type,final String order_type,final String shipping_user,
+                                                                        final String shipping_address,final String phone_number) {
+        return Observable.create(new Observable.OnSubscribeFunc<RestaurantOrderBackData>() {
+            @Override
+            public Subscription onSubscribe(Observer<? super RestaurantOrderBackData> observer) {
+                try {
+                    observer.onNext(RestaurantsOrdersapiManager.RestaurantsOrders(restaurant_id, access_token,foods,ship_type,order_type,shipping_user,shipping_address,phone_number));
                     observer.onCompleted();
                 } catch (Exception e) {
                     observer.onError(e);

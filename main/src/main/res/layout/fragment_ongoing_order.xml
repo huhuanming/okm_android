@@ -12,6 +12,6 @@
         android:scrollbars="none"
         android:id="@+id/ongoing_order_listview"
         android:divider="#EBEBEB"
-        android:dividerHeight="5dp"
+        android:dividerHeight="22.5dp"
         />
 </LinearLayout>
