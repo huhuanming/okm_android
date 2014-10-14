@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
     <!--ShareSdk-->
 
     <!-- 高德地图信息 -->
@@ -29,7 +30,7 @@
         android:theme="@style/MyTheme" >
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="986619b8b6a5649d20bf944ba226d1ed" />
+            android:value="a58e77d5385f27e99e1f4f54e24fba54" />
         <activity
             android:name=".Activity.MenuActivity"
             android:icon="@drawable/lingjiaxiaochu"

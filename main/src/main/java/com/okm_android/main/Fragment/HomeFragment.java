@@ -100,8 +100,6 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
                             restaurantBackDatas.addAll((List<RestaurantBackData>)msg.obj);
                             adapter.notifyDataSetChanged();
                         }
-
-
                         break;
                 }
                 super.handleMessage(msg);

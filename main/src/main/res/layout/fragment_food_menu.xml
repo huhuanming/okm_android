@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="显示数量"
+            android:text="0"
             android:textColor="#FFFFFF"
             android:textSize="15.75sp"
             android:gravity="center"
@@ -48,8 +48,9 @@
             android:textSize="15.75sp"
             android:gravity="center"
             android:id="@+id/shop_name"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginLeft="41dp"
+            android:layout_alignTop="@+id/place_order"
+            android:layout_toRightOf="@+id/show_food_count" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +66,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="显示总价"
+            android:text="0.0"
             android:textColor="#FFFFFF"
             android:textSize="15.75sp"
             android:gravity="center"

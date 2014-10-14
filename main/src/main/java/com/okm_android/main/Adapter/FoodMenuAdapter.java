@@ -6,13 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.okm_android.main.Model.FoodDataResolve;
+import com.okm_android.main.Model.RestaurantMenu;
 import com.okm_android.main.R;
 import com.okm_android.main.View.ListView.PinnedSectionListView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,18 +28,17 @@ public class FoodMenuAdapter extends BaseAdapter {
     final int TYPE_food = 2;
     final int VIEW_TYPE = 0;
     final int TYPE_Menu = 1;
-
-
+    String typeName;
     Context mContext;
     LinearLayout linearLayout = null;
     LayoutInflater inflater;
-    ArrayList<Map<String,String>> listItems;
-
-
-    public FoodMenuAdapter(Context context,ArrayList<Map<String,String>> list){
+    private List<Integer> typeLong = new ArrayList<Integer>();
+    private List<Map<String,String>> listItems=new ArrayList<Map<String,String>>();
+    public FoodMenuAdapter(Context context,List<Map<String,String>> list,List<Integer> menuLong){
         mContext = context;
         inflater = LayoutInflater.from(mContext);
         listItems=list;
+        typeLong=menuLong;
     }
     @Override
     public int getCount() {
@@ -52,17 +56,18 @@ public class FoodMenuAdapter extends BaseAdapter {
     }
 
     public int getItemViewType(int position) {
-        if(position==0||position==3||position==8)
+        for(int i=0;i<typeLong.size();i++)
         {
-            return TYPE_Menu;
+            if(position==typeLong.get(i))
+                return TYPE_Menu;
         }
-        else return TYPE_food;
+        return TYPE_food;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        viewHolder1 holder1 = null;
-        viewHolder2 holder2 = null;
+        final viewHolder1 holder1;
+        final viewHolder2 holder2;
         int type = getItemViewType(position);
         switch(type)
         {
@@ -71,7 +76,7 @@ public class FoodMenuAdapter extends BaseAdapter {
                 convertView = inflater.inflate(R.layout.food_group_item, parent, false);
                 holder1 = new viewHolder1();
                 holder1.menuName = (TextView)convertView.findViewById(R.id.food_group_name);
-                Log.e("convertView = ", "NULL TYPE_1");
+                Log.e("convertView = ", "NULL TYPE_menu");
                 convertView.setTag(holder1);
                 holder1.menuName.setText(listItems.get(position).get("menuName").toString());
             }break;
@@ -82,21 +87,57 @@ public class FoodMenuAdapter extends BaseAdapter {
                 holder2.foodName = (TextView) convertView.findViewById(R.id.food_menu_name);
                 holder2.foodPrice = (TextView) convertView.findViewById(R.id.food_price);
                 holder2.saleCount = (TextView) convertView.findViewById(R.id.show_sale_count);
+                holder2.addButton = (RelativeLayout) convertView.findViewById(R.id.count_add);
+                holder2.subButton = (RelativeLayout) convertView.findViewById(R.id.count_sub);
+                holder2.oneCount = (RelativeLayout) convertView.findViewById(R.id.one_food_count);
+                holder2.Count = (TextView) convertView.findViewById(R.id.count);
                 convertView.setTag(holder2);
-                holder2.foodName.setText(listItems.get(position).get("foodName").toString());
-                holder2.foodPrice.setText(listItems.get(position).get("foodPrice").toString());
-                holder2.saleCount.setText("月售"+listItems.get(position).get("monthSale").toString()+"份");
+                Log.e("convertView = ", "NULL TYPE_food");
+                holder2.foodName.setText(listItems.get(position).get("foodName"));
+                holder2.foodPrice.setText(listItems.get(position).get("foodPrice"));
+                holder2.saleCount.setText("月售"+listItems.get(position).get("monthSale")+"份");
+
+                holder2.addButton.setTag(position);
+                holder2.addButton.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v){
+                        int count= Integer.valueOf(holder2.Count.getText().toString())+1;
+                        holder2.Count.setText(count+"");
+                        if(Integer.valueOf(holder2.Count.getText().toString())>0)
+                        {
+                            holder2.subButton.setVisibility(View.VISIBLE);
+                            holder2.oneCount.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+                holder2.subButton.setTag(position);
+                holder2.subButton.setOnClickListener(new View.OnClickListener()
+                {
+
+                    public void onClick(View v){
+                        int count= Integer.valueOf(holder2.Count.getText().toString())-1;
+                         if(Integer.valueOf(holder2.Count.getText().toString())<=0)
+                        {
+                            holder2.subButton.setVisibility(View.INVISIBLE);
+                            holder2.oneCount.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
             }break;
         }
         return convertView;
     }
     class viewHolder1{
-        TextView menuName;
+        public TextView menuName;
     }
     class viewHolder2{
-        TextView foodName;
-        TextView foodPrice;
-        TextView saleCount;
+        public TextView foodName;
+        public TextView foodPrice;
+        public TextView saleCount;
+        public TextView Count;
+        public RelativeLayout addButton;
+        public RelativeLayout subButton;
+        public RelativeLayout oneCount;
     }
 
 }

@@ -12,7 +12,10 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.okm_android.main.Fragment.FoodMenuFragment;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.AddObserver.NotificationCenter;
+import com.okm_android.main.Utils.ToastUtils;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 
@@ -27,10 +30,15 @@ public class FoodMenuActivity extends FragmentActivity {
     RadioButton foodMenu;
     SegmentedGroup segmentedGroup;
     RadioButton shopDetail;
-
+    public String rid=null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_message);
+
+        Intent intent = this.getIntent();
+        final Bundle bundle = intent.getExtras();
+        rid=bundle.getString("rid");
+        getIntent().putExtra("Restaurant_id", rid);
         //ButterKnife.inject(this);
         foodMenu=(RadioButton)findViewById(R.id.rbtn_food_menu);
         segmentedGroup=(SegmentedGroup)findViewById(R.id.shop_message_segmented);
@@ -46,6 +54,7 @@ public class FoodMenuActivity extends FragmentActivity {
                 switch (checkedId)
                 {
                     case R.id.rbtn_food_menu:
+                        getIntent().putExtra("Restaurant_id", rid);
                         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
                         tx.replace(R.id.shop_message_fragment, Fragment.instantiate(FoodMenuActivity.this, fragments[0]));
                         tx.commit();
@@ -62,6 +71,8 @@ public class FoodMenuActivity extends FragmentActivity {
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.shop_message_fragment, Fragment.instantiate(FoodMenuActivity.this, fragments[0]));
         tx.commit();
+
+        NotificationCenter.getInstance().addObserver("sendRid", this, rid);
     }
     public boolean onOptionsItemSelected(MenuItem item)
     {
