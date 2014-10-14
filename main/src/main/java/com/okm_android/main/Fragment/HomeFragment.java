@@ -486,12 +486,14 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
     @Override
     public void onResume() {
         super.onResume();
+        isStop = false;
         MenuActivity.menuActionbarItemClick = this;
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        isStop = true;
         MenuActivity.menuActionbarItemClick = null;
     }
 
@@ -520,6 +522,13 @@ public class HomeFragment extends Fragment implements ViewPager.OnPageChangeList
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        isStop = true;
+        super.onDestroy();
 
     }
 }

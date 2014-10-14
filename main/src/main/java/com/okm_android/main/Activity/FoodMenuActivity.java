@@ -7,15 +7,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.okm_android.main.Fragment.FoodMenuFragment;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.AddObserver.NotificationCenter;
-import com.okm_android.main.Utils.ToastUtils;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 
@@ -63,6 +62,8 @@ public class FoodMenuActivity extends FragmentActivity {
                         FragmentTransaction tx2 = getSupportFragmentManager().beginTransaction();
                         tx2.replace(R.id.shop_message_fragment, Fragment.instantiate(FoodMenuActivity.this, fragments[1]));
                         tx2.commit();
+                        Log.e("ssss", "dsdd");
+                        NotificationCenter.getInstance().postNotification("restaurantDetails",rid);
                         break;
                 }
             }
