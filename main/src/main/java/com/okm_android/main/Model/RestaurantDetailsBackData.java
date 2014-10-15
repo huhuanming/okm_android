@@ -12,7 +12,7 @@ public class RestaurantDetailsBackData {
     public String phone_number;
     public Restaurant_address restaurant_address;
     public Restaurant_status restaurant_status;
-    public List<Restaurant_type> restaurant_types;
+    public List<Restaurant_type> restaurant_type;
     public static class Restaurant_address {
         public String address;
         public String radius;
@@ -27,7 +27,7 @@ public class RestaurantDetailsBackData {
 
     public static class Restaurant_type{
         public Restaurant_type_name restaurant_type_name;
-        public static class Restaurant_type_name{
+        public class Restaurant_type_name{
             public String type_name;
         }
 

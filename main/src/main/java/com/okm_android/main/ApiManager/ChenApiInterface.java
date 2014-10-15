@@ -57,7 +57,7 @@ public class ChenApiInterface {
     }
 
     public interface ApiManagerRestaurantDetails {
-        @POST("/restaurants/{restaurant_id}")
+        @GET("/restaurants/{restaurant_id}")
         RestaurantDetailsBackData RestaurantDetails(@Path("restaurant_id")String restaurant_id);
     }
 }
