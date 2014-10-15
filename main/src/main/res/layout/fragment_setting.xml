@@ -66,7 +66,7 @@
                         android:background="@drawable/selector">
 
                         <TextView
-                            android:id="@+id/textView5"
+                            android:id="@+id/show_food_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -80,7 +80,7 @@
                             android:id="@+id/show_cache"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/textView5"
+                            android:layout_alignBottom="@+id/show_food_price"
                             android:layout_alignParentRight="true"
                             android:text="显示缓存"
                             android:layout_marginRight="21.5dp"

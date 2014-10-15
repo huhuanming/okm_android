@@ -8,14 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.okm_android.main.Fragment.FoodMenuFragment;
 import com.okm_android.main.R;
 import com.okm_android.main.Utils.AddObserver.NotificationCenter;
-import com.okm_android.main.Utils.ToastUtils;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 
@@ -84,11 +81,5 @@ public class FoodMenuActivity extends FragmentActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-    public void placeOrder(View view)
-    {
-        Intent intent = new Intent();
-        intent.setClass(this,PlaceOrderActivity.class);
-        startActivity(intent);
     }
 }

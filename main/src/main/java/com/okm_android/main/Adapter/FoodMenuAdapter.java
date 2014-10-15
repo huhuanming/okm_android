@@ -14,12 +14,14 @@ import android.widget.TextView;
 import com.okm_android.main.Model.FoodDataResolve;
 import com.okm_android.main.Model.RestaurantMenu;
 import com.okm_android.main.R;
+import com.okm_android.main.Utils.AddObserver.NotificationCenter;
 import com.okm_android.main.View.ListView.PinnedSectionListView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Observer;
 
 /**
  * Created by QYM on 14-10-9.
@@ -64,7 +66,7 @@ public class FoodMenuAdapter extends BaseAdapter {
         return TYPE_food;
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, final ViewGroup parent)
     {
         final viewHolder1 holder1;
         final viewHolder2 holder2;
@@ -108,21 +110,26 @@ public class FoodMenuAdapter extends BaseAdapter {
                             holder2.subButton.setVisibility(View.VISIBLE);
                             holder2.oneCount.setVisibility(View.VISIBLE);
                         }
+                        NotificationCenter.getInstance().postNotification("AddFoodPrice",listItems.get(position).toString());
+                        NotificationCenter.getInstance().postNotification("AddFoodCount");
                     }
                 });
                 holder2.subButton.setTag(position);
                 holder2.subButton.setOnClickListener(new View.OnClickListener()
                 {
-
                     public void onClick(View v){
                         int count= Integer.valueOf(holder2.Count.getText().toString())-1;
-                         if(Integer.valueOf(holder2.Count.getText().toString())<=0)
+                        holder2.Count.setText(count+"");
+                        if(Integer.valueOf(holder2.Count.getText().toString())<=0)
                         {
                             holder2.subButton.setVisibility(View.INVISIBLE);
                             holder2.oneCount.setVisibility(View.INVISIBLE);
                         }
+                        NotificationCenter.getInstance().postNotification("SubFoodPrice",listItems.get(position).toString());
+                        NotificationCenter.getInstance().postNotification("SubFoodCount");
                     }
                 });
+
             }break;
         }
         return convertView;
