@@ -1,6 +1,7 @@
 package com.okm_android.main.Fragment;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.okm_android.main.Activity.SortingActivity;
 import com.okm_android.main.ApiManager.ChenApiManager;
 import com.okm_android.main.ApiManager.MainApiManager;
 import com.okm_android.main.Model.RestaurantDetailsBackData;
@@ -76,6 +78,17 @@ public class ShopDetailFragment extends Fragment{
         send_money = (TextView)parentView.findViewById(R.id.send_money);
         shop_announce = (TextView)parentView.findViewById(R.id.shop_announce);
         see_evaluate = (TextView)parentView.findViewById(R.id.see_evaluate_text);
+
+        see_evaluate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), SortingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Restaurant_id",rid);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initData(RestaurantDetailsBackData data){
