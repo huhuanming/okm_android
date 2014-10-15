@@ -2435,7 +2435,7 @@ containing a value of this type.
     }
     public static final class style {
         public static final int AcBar_titleStyle=0x7f0c0000;
-        /**                  <item name="android:displayOptions">showTitle</item> //只显示title 不显示logo 
+        /**  <item name="android:displayOptions">showTitle</item> //只显示title 不显示logo 
          */
         public static final int ActionBarStyle=0x7f0c0001;
         /**  Customize your theme here. 
