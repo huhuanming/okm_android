@@ -39,6 +39,7 @@ public class ShopDetailFragment extends Fragment{
     private TextView send_money;
     private TextView less_time;
     private TextView shop_announce;
+    private TextView see_evaluate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class ShopDetailFragment extends Fragment{
         less_time = (TextView)parentView.findViewById(R.id.less_time);
         send_money = (TextView)parentView.findViewById(R.id.send_money);
         shop_announce = (TextView)parentView.findViewById(R.id.shop_announce);
+        see_evaluate = (TextView)parentView.findViewById(R.id.see_evaluate_text);
     }
 
     private void initData(RestaurantDetailsBackData data){

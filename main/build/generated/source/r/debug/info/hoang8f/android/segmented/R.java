@@ -15,15 +15,15 @@ public final class R {
 		public static final int radio_button_conner_radius = 0x7f090030;
 	}
 	public static final class drawable {
-		public static final int button_text_color = 0x7f020070;
-		public static final int radio_checked_default = 0x7f0200b6;
-		public static final int radio_checked_left = 0x7f0200b7;
-		public static final int radio_checked_middle = 0x7f0200b8;
-		public static final int radio_checked_right = 0x7f0200b9;
-		public static final int radio_unchecked_default = 0x7f0200ba;
-		public static final int radio_unchecked_left = 0x7f0200bb;
-		public static final int radio_unchecked_middle = 0x7f0200bc;
-		public static final int radio_unchecked_right = 0x7f0200bd;
+		public static final int button_text_color = 0x7f020072;
+		public static final int radio_checked_default = 0x7f0200ba;
+		public static final int radio_checked_left = 0x7f0200bb;
+		public static final int radio_checked_middle = 0x7f0200bc;
+		public static final int radio_checked_right = 0x7f0200bd;
+		public static final int radio_unchecked_default = 0x7f0200be;
+		public static final int radio_unchecked_left = 0x7f0200bf;
+		public static final int radio_unchecked_middle = 0x7f0200c0;
+		public static final int radio_unchecked_right = 0x7f0200c1;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f0b0012;

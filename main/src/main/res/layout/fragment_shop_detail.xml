@@ -142,7 +142,6 @@
                 <RelativeLayout
                     android:layout_width="67.5dp"
                     android:layout_height="22.5dp"
-                    android:clickable="true"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="10dp"
                     android:id="@+id/see_evaluate"
@@ -151,16 +150,16 @@
                     android:layout_alignParentEnd="true">
 
                     <TextView
+                        android:id="@+id/see_evaluate_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/see_evaluate"
                         android:textSize="13.5sp"
-                        android:textColor="#25ade8"
-                        android:background="@drawable/radius"
-                        android:gravity="center"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:clickable="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/evaluate_style"
+                        android:textColor="@drawable/evaluate_text_style"
+                        android:gravity="center" />
                 </RelativeLayout>
 
             </RelativeLayout>
