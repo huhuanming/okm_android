@@ -48,8 +48,8 @@
             android:textSize="15.75sp"
             android:gravity="center"
             android:id="@+id/shop_name"
-            android:layout_marginLeft="41dp"
-            android:layout_alignTop="@+id/place_order"
+            android:layout_marginLeft="44dp"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/show_food_count" />
 
         <TextView
@@ -66,25 +66,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="0.0"
+            android:text="0"
             android:textColor="#FFFFFF"
             android:textSize="15.75sp"
             android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView4"
-            android:id="@+id/textView5" />
+            android:id="@+id/show_food_price" />
 
         <RelativeLayout
             android:layout_width="60dp"
             android:layout_height="34dp"
             android:id="@+id/place_order"
             android:clickable="true"
-            android:onClick="placeOrder"
             android:layout_marginRight="6dp"
             android:background="@drawable/bbuton_place_order_style"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" >
+            android:layout_alignParentEnd="true">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -85,10 +85,4 @@ public class FoodMenuActivity extends FragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void placeOrder(View view)
-    {
-        Intent intent = new Intent();
-        intent.setClass(this,PlaceOrderActivity.class);
-        startActivity(intent);
-    }
 }

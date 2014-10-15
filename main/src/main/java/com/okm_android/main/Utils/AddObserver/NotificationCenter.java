@@ -11,6 +11,8 @@ import java.util.HashMap;
 public class NotificationCenter {
     private HashMap<String,Observer> keyPaths;
 
+
+
     private static class NotificationCenterHolder{
         public static NotificationCenter holder = init();
 

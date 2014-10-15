@@ -2089,7 +2089,7 @@ containing a value of this type.
         public static final int order_note_change=0x7f0800a8;
         public static final int order_segmentbutton=0x7f08009b;
         public static final int order_segmented=0x7f08009a;
-        public static final int place_order=0x7f080085;
+        public static final int place_order=0x7f080087;
         public static final int places_image=0x7f080061;
         public static final int position_search_listview=0x7f08005e;
         public static final int profile_image=0x7f080059;
@@ -2146,6 +2146,7 @@ containing a value of this type.
         public static final int show_cache=0x7f0800b6;
         public static final int show_charact=0x7f0800bf;
         public static final int show_food_count=0x7f080083;
+        public static final int show_food_price=0x7f080086;
         public static final int show_sale_count=0x7f080079;
         public static final int sorting_fragment=0x7f08006d;
         public static final int sorting_score_segmentbutton=0x7f08006c;
@@ -2174,8 +2175,7 @@ containing a value of this type.
         public static final int textView=0x7f08007e;
         public static final int textView1=0x7f080077;
         public static final int textView2=0x7f080082;
-        public static final int textView4=0x7f080086;
-        public static final int textView5=0x7f080087;
+        public static final int textView4=0x7f080085;
         public static final int textView7=0x7f0800c6;
         public static final int textView8=0x7f0800c4;
         public static final int textView9=0x7f0800c2;
@@ -2431,7 +2431,7 @@ containing a value of this type.
     }
     public static final class style {
         public static final int AcBar_titleStyle=0x7f0c0000;
-        /**  <item name="android:displayOptions">showTitle</item> //只显示title 不显示logo 
+        /**                  <item name="android:displayOptions">showTitle</item> //只显示title 不显示logo 
          */
         public static final int ActionBarStyle=0x7f0c0001;
         /**  Customize your theme here. 
