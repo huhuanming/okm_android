@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -82,11 +81,5 @@ public class FoodMenuActivity extends FragmentActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-    public void placeOrder(View view)
-    {
-        Intent intent = new Intent();
-        intent.setClass(this,PlaceOrderActivity.class);
-        startActivity(intent);
     }
 }
