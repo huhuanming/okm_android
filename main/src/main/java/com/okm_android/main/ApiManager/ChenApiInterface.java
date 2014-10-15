@@ -2,6 +2,7 @@ package com.okm_android.main.ApiManager;
 
 import com.okm_android.main.Model.RegisterBackData;
 import com.okm_android.main.Model.RestaurantBackData;
+import com.okm_android.main.Model.RestaurantDetailsBackData;
 import com.okm_android.main.Model.RestaurantOrderBackData;
 import com.okm_android.main.Model.RestaurantTypeData;
 import com.okm_android.main.Model.UploadBackData;
@@ -53,5 +54,10 @@ public class ChenApiInterface {
                                                  @Query("foods")String foods,@Query("ship_type")String ship_type,
                                                  @Query("order_type")String order_type,@Query("shipping_user")String shipping_user,
                                                  @Query("shipping_address")String shipping_address,@Query("phone_number")String phone_number);
+    }
+
+    public interface ApiManagerRestaurantDetails {
+        @GET("/restaurants/{restaurant_id}")
+        RestaurantDetailsBackData RestaurantDetails(@Path("restaurant_id")String restaurant_id);
     }
 }

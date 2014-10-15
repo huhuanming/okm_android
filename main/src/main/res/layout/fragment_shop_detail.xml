@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#f2f2f2"
     android:layout_height="match_parent">
 
     <ScrollView
@@ -16,13 +17,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="152dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="14dp"
                     android:src="@drawable/lingjiaxiaochu"
-                    android:id="@+id/imageView" />
+                    android:id="@+id/fragment_shop_details_img" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -31,15 +32,14 @@
                     android:layout_marginTop="10dp"
                     android:textSize="13.5sp"
                     android:textColor="#1a1a1a"
-                    android:layout_below="@+id/imageView"
-                    android:layout_alignLeft="@+id/imageView"
-                    android:layout_alignStart="@+id/imageView"
+                    android:layout_below="@+id/fragment_shop_details_img"
+                    android:layout_alignLeft="@+id/fragment_shop_details_img"
+                    android:layout_alignStart="@+id/fragment_shop_details_img"
                     android:id="@+id/textView" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示商家地址"
                     android:textSize="13.5sp"
                     android:id="@+id/shop_address"
                     android:textColor="#1a1a1a"
@@ -49,7 +49,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示商家电话"
                     android:textSize="13.5sp"
                     android:id="@+id/shop_number"
                     android:textColor="#1a1a1a"
@@ -71,20 +70,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="显示商家名称"
                     android:id="@+id/shop_name"
                     android:textColor="#1a1a1a"
                     android:textSize="18sp"
                     android:layout_marginTop="22dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_toRightOf="@+id/imageView" />
+                    android:layout_toRightOf="@+id/fragment_shop_details_img" />
 
                 <ImageView
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:id="@+id/star1"
                     android:layout_marginTop="7dp"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/star_on"
                     android:layout_below="@+id/shop_name"
                     android:layout_alignLeft="@+id/shop_name"
                     android:layout_alignStart="@+id/shop_name" />
@@ -95,7 +93,7 @@
                     android:id="@+id/star2"
                     android:layout_marginLeft="4.5dp"
                     android:layout_marginTop="7dp"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/star_on"
                     android:layout_below="@+id/shop_name"
                     android:layout_toRightOf="@+id/star1" />
 
@@ -105,7 +103,7 @@
                     android:id="@+id/star3"
                     android:layout_marginLeft="4.5dp"
                     android:layout_marginTop="7dp"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/star_on"
                     android:layout_below="@+id/shop_name"
                     android:layout_toRightOf="@+id/star2" />
 
@@ -115,7 +113,7 @@
                     android:id="@+id/star4"
                     android:layout_marginLeft="4.5dp"
                     android:layout_marginTop="7dp"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/star_on"
                     android:layout_below="@+id/shop_name"
                     android:layout_toRightOf="@+id/star3" />
 
@@ -125,7 +123,7 @@
                     android:id="@+id/star5"
                     android:layout_marginLeft="4.5dp"
                     android:layout_marginTop="7dp"
-                    android:src="@drawable/ic_launcher"
+                    android:src="@drawable/star_on"
                     android:layout_below="@+id/shop_name"
                     android:layout_toRightOf="@+id/star4" />
 
@@ -134,7 +132,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_marginTop="12dp"
-                    android:text="显示菜馆菜色"
                     android:textColor="#666666"
                     android:textSize="13.5sp"
                     android:id="@+id/show_charact"
@@ -145,7 +142,6 @@
                 <RelativeLayout
                     android:layout_width="67.5dp"
                     android:layout_height="22.5dp"
-                    android:clickable="true"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="10dp"
                     android:id="@+id/see_evaluate"
@@ -154,37 +150,37 @@
                     android:layout_alignParentEnd="true">
 
                     <TextView
+                        android:id="@+id/see_evaluate_text"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/see_evaluate"
                         android:textSize="13.5sp"
-                        android:textColor="#25ade8"
-                        android:background="@drawable/radius"
-                        android:gravity="center"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:clickable="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/evaluate_style"
+                        android:textColor="@drawable/evaluate_text_style"
+                        android:gravity="center" />
                 </RelativeLayout>
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50.5dp"
+                android:layout_height="55.5dp"
                 android:background="#434343">
 
                 <RelativeLayout
                     android:layout_width="118.5dp"
-                    android:layout_height="match_parent">
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/less_money"
                         android:textSize="22.5sp"
-                        android:text="20"
+                        android:text="0"
                         android:textColor="#e5e5e5"
-                        android:layout_marginTop="5dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true" />
 
@@ -202,18 +198,16 @@
                         android:layout_width="1.5dp"
                         android:layout_height="40dp"
                         android:background="#e5e5e5"
-                        android:layout_alignBottom="@+id/textView9"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentEnd="true">
-
-                    </RelativeLayout>
+                        android:layout_centerVertical="true"
+                        />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="118.5dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true">
 
                     <TextView
@@ -221,9 +215,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/less_time"
                         android:textSize="22.5sp"
-                        android:text="40"
+                        android:text="0"
                         android:textColor="#e5e5e5"
-                        android:layout_marginTop="5dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true" />
 
@@ -240,8 +233,8 @@
 
                 <RelativeLayout
                     android:layout_width="118.5dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true">
 
@@ -252,7 +245,6 @@
                         android:textSize="22.5sp"
                         android:text="0"
                         android:textColor="#e5e5e5"
-                        android:layout_marginTop="5dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true" />
 
@@ -279,12 +271,19 @@
 
             </RelativeLayout>
             <TextView
-                android:id="@+id/shop_announce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#25ade8"
                 android:textSize="11.25dp"
                 android:text="@string/shop_announce"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/shop_announce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#25ade8"
+                android:textSize="11.25dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="20dp"/>
         </LinearLayout>
