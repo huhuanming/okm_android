@@ -1,155 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-SinaWeibo-2.4.0-76157c53f511ddad62f778a0aeefc158e141cedb.jar"
-        jar="/home/qym/文档/okm_android/main/libs/ShareSDK-SinaWeibo-2.4.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/ShareSDK-SinaWeibo-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="4cec84743caab9edacaedef4efe93ff967c36844"/>
+        revision="21.1.1"
+        sha1="4cec84743caab9edacaedef4efe93ff967c36844">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-SinaWeibo-2.4.0-6ab275e62cf16a2b9f7828bea3b77a8e05200710.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-2.4.0-f0ec03188f575dd5af867d669a1bec56fed8aed6.jar"
-        jar="/home/qym/文档/okm_android/main/libs/ShareSDK-Wechat-2.4.0.jar"
+        jar="/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/0.2.0/classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="0ef5bf61c8d32974846483bf9321f567f547d77e"/>
+        revision="21.1.1"
+        sha1="6c4d079ac3911c38d4d9c5383f786f258115633d">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/classes-591091b96e811ca63995647ddfadefb7e2f6b969.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/AMap_Services_V2.3.0-47782c198047f9408c1629558a17f5ac1140fd31.jar"
-        jar="/home/qym/文档/okm_android/main/libs/AMap_Services_V2.3.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/ShareSDK-Wechat-Moments-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="0e35992f6d2a018c45fab23e0602fecd5e353ad3"/>
+        revision="21.1.1"
+        sha1="7b8afbc966fec173ca3ddc87486264f485a01e71">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-Moments-2.4.0-4a208dc8baf767f9ef6fa2fd94b5e55a9b194068.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/AndroidEasingFunctions-1.0.0-8871b807152d30e6aab3a0502effe516c14a428a.jar"
-        jar="/home/qym/文档/okm_android/main/libs/AndroidEasingFunctions-1.0.0.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-protocols/1.2.1/ec2beaefef3bd4f680c17fad8e72e66f2a006f1/okhttp-protocols-1.2.1.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="ae609e93bcbe4988aa371ab615b7abb43e9399bf"/>
+        revision="21.1.1"
+        sha1="0ec2beaefef3bd4f680c17fad8e72e66f2a006f1">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/okhttp-protocols-1.2.1-8aa569cfc9d7f5b4e343566acbc49eba7e2c2e2f.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/retrofit-1.2.2-62af1968cfd958794eb1e1bdabdb9897650974c5.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.2.2/cdf7b60568092fbcc7a254371c345e92f733c03c/retrofit-1.2.2.jar"
+        jar="/Users/chenhong/okm_android/main/libs/AndroidEasingFunctions-1.0.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="cdf7b60568092fbcc7a254371c345e92f733c03c"/>
+        revision="21.1.1"
+        sha1="ae609e93bcbe4988aa371ab615b7abb43e9399bf">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/AndroidEasingFunctions-1.0.0-1ce744d5fcd61fc83a33249d90fb85d9d7331f1e.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-Moments-2.4.0-cd9b55d36f824947e33cbbd57e5ee68f6b830c87.jar"
-        jar="/home/qym/文档/okm_android/main/libs/ShareSDK-Wechat-Moments-2.4.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/AndroidViewAnimations-1.1.2.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="7b8afbc966fec173ca3ddc87486264f485a01e71"/>
+        revision="21.1.1"
+        sha1="ac9636906a7ee2136349ec7fc2d5668aca4a4bdc">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/AndroidViewAnimations-1.1.2-5ef9cec5ca4d4c90a49eadf39d06a6f2bfd8e289.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-Core-2.4.0-166a1268a47c2ca297febb4b1842178e966b24a6.jar"
-        jar="/home/qym/文档/okm_android/main/libs/ShareSDK-Wechat-Core-2.4.0.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.netflix.rxjava/rxjava-android/0.14.6/9125edce31b505b6622410f7ee09f9659718dc3a/rxjava-android-0.14.6.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="fb4aa13636e75514f06d689cd6dab3e26220c9df"/>
+        revision="21.1.1"
+        sha1="9125edce31b505b6622410f7ee09f9659718dc3a">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/rxjava-android-0.14.6-c162eb155ad501a3921f7af01ab041cf46db55c5.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/support-v4-19.1.0-c7c5271346c645c0a326c7bf1a3f6778b797f1c3.jar"
-        jar="/home/qym/文档/android-studio/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/ShareSDK-Wechat-Favorite-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+        revision="21.1.1"
+        sha1="b9785fb2ef5d2376cbd3ee8652f87056a226ed10">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-Favorite-2.4.0-d0c6d0e8851d4940ee6cd7ed4f3be400e6f8b189.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/mframework-ec2e98e00364d8b456ea1f3237b7b4a07bee4f93.jar"
-        jar="/home/qym/文档/okm_android/main/libs/mframework.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/1.2.1/c3562574496bb4d452d6fc45b817577e98d08afe/okhttp-1.2.1.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="25509058b34a5ee08dbf66e57078e3083735d200"/>
+        revision="21.1.1"
+        sha1="c3562574496bb4d452d6fc45b817577e98d08afe">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/okhttp-1.2.1-0a71741e30c26fb70a1c7b1baf6c3c2544710d1e.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/NineOldAndroid-2.4.0-4cc090d7564435b131454c34e6c15af78ca3787a.jar"
-        jar="/home/qym/文档/okm_android/main/libs/NineOldAndroid-2.4.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/Android_Location_V1.3.1.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb"/>
+        revision="21.1.1"
+        sha1="38a2f44a304a66fab0527c0a86e356ddd2cce30d">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/Android_Location_V1.3.1-38df2f7b03b4f129d2e9ab27b778b5c6a3c5c907.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/okhttp-1.2.1-114a98e290aef98cb63c0b76bf47942349871cfb.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/1.2.1/c3562574496bb4d452d6fc45b817577e98d08afe/okhttp-1.2.1.jar"
+        jar="/Users/chenhong/Downloads/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="c3562574496bb4d452d6fc45b817577e98d08afe"/>
+        revision="21.1.1"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/support-v4-19.1.0-b4f4467c6e6d5485dffb25ac8c15e622e0bcaf50.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/AMap_2DMap_V2.3.0-eedebaa0d5e49519c30860f9a4bbb9f25e5b591b.jar"
-        jar="/home/qym/文档/okm_android/main/libs/AMap_2DMap_V2.3.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/ShareSDK-Wechat-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="f69a45ad8095c798970837ed61d7fb8b0b4e6ebe"/>
+        revision="21.1.1"
+        sha1="0ef5bf61c8d32974846483bf9321f567f547d77e">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-2.4.0-1297b55ba6130aafd221b6b10c8e89adc7edfe1a.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Core-2.4.0-5778b7bf239ae4c47df6bc2b5611297561f7667f.jar"
-        jar="/home/qym/文档/okm_android/main/libs/ShareSDK-Core-2.4.0.jar"
+        jar="/Users/chenhong/okm_android/main/libs/ShareSDK-Wechat-Core-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="4e2b6e0428cc9cbaa878a5e108b6a7ac355f7a25"/>
+        revision="21.1.1"
+        sha1="fb4aa13636e75514f06d689cd6dab3e26220c9df">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-Core-2.4.0-cdcb7a2f10914a0bc9d0117bbf8eeea3e7f87b8d.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/classes-a868211d337a303858c4892cbfcfd023ba846e1f.jar"
-        jar="/home/qym/文档/okm_android/main/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/0.2.0/classes.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/5.1.2/daf5472b0df6dabaceb6ad755b3812535863965a/butterknife-5.1.2.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="6c4d079ac3911c38d4d9c5383f786f258115633d"/>
+        revision="21.1.1"
+        sha1="daf5472b0df6dabaceb6ad755b3812535863965a">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/butterknife-5.1.2-adf9ad19bff1ef6c9949843dfe8cb0c77b89fcd8.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/okhttp-protocols-1.2.1-5bbf295f9246155fd38bbd7aee9c0ec5cf73ad7e.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp-protocols/1.2.1/ec2beaefef3bd4f680c17fad8e72e66f2a006f1/okhttp-protocols-1.2.1.jar"
+        jar="/Users/chenhong/okm_android/main/libs/ShareSDK-Core-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="0ec2beaefef3bd4f680c17fad8e72e66f2a006f1"/>
+        revision="21.1.1"
+        sha1="4e2b6e0428cc9cbaa878a5e108b6a7ac355f7a25">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Core-2.4.0-4e08c7f4f73e722f01f054d89b0b5476346d3ef7.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/classes-dc86bdd224f30343e0c5cd33a93b7c6132ce2b3b.jar"
-        jar="/home/qym/文档/okm_android/main/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        jar="/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+        revision="21.1.1"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/classes-a5e352f6175b46d321cbb617976ed986f3b0dc34.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/classes-4d9f0eac42e27283a2e4cc9ef4d0499a9a887d23.jar"
-        jar="/home/qym/文档/okm_android/main/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.0/classes.jar"
+        jar="/Users/chenhong/okm_android/main/libs/AMap_Services_V2.3.1.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="74a49dde8bd90b878b98c2ecc32e4feec831f30d"/>
+        revision="21.1.1"
+        sha1="89ccf8789dad06e5ed2eab33e89d1dfab5226bba">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/AMap_Services_V2.3.1-6e27bde08dcc17fcbc8b9486fb5e46f245131602.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/rxjava-core-0.14.6-3a1e6cabdf31f7b9108f46a2246f37244149ae18.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.netflix.rxjava/rxjava-core/0.14.6/63abc98eaa4264eb72aad441f067c6f4080e096f/rxjava-core-0.14.6.jar"
+        jar="/Users/chenhong/okm_android/main/libs/AMap_3DMap_V2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="63abc98eaa4264eb72aad441f067c6f4080e096f"/>
+        revision="21.1.1"
+        sha1="37703c4a641f0f61d4567c987da1f26cd071cc0e">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/AMap_3DMap_V2.4.0-4deabb657d687241248764b516a6acedaf1edd5b.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/AndroidViewAnimations-1.1.2-9a1b1d49f702ba006bdde0acc33b9efefaeb7cee.jar"
-        jar="/home/qym/文档/okm_android/main/libs/AndroidViewAnimations-1.1.2.jar"
+        jar="/Users/chenhong/okm_android/main/libs/NineOldAndroid-2.4.0.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="ac9636906a7ee2136349ec7fc2d5668aca4a4bdc"/>
+        revision="21.1.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/NineOldAndroid-2.4.0-0a6641376948d6eb486362685ee09db924208501.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/classes-5eb944bb919bae262d922a2209199659e89cb4f8.jar"
-        jar="/home/qym/文档/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/classes.jar"
+        jar="/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.0/classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="b345b04752628a557bfceefc3f15afb22533db18"/>
+        revision="21.1.1"
+        sha1="74a49dde8bd90b878b98c2ecc32e4feec831f30d">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/classes-b7ed8a91627bf045c163c13b03066b4d56d0ef85.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/butterknife-5.1.2-3c68bfb491ecbb0531a22cf9d7e5b9e838356d2e.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/5.1.2/daf5472b0df6dabaceb6ad755b3812535863965a/butterknife-5.1.2.jar"
+        jar="/Users/chenhong/okm_android/main/libs/mframework.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="daf5472b0df6dabaceb6ad755b3812535863965a"/>
+        revision="21.1.1"
+        sha1="25509058b34a5ee08dbf66e57078e3083735d200">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/mframework-e08e51c33f9f39c002306e9a6cb041e2b49e34e8.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/rxjava-android-0.14.6-9e0c1668b0228ae1c501036c4aa661fa5ffb9d57.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.netflix.rxjava/rxjava-android/0.14.6/9125edce31b505b6622410f7ee09f9659718dc3a/rxjava-android-0.14.6.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.netflix.rxjava/rxjava-core/0.14.6/63abc98eaa4264eb72aad441f067c6f4080e096f/rxjava-core-0.14.6.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="9125edce31b505b6622410f7ee09f9659718dc3a"/>
+        revision="21.1.1"
+        sha1="63abc98eaa4264eb72aad441f067c6f4080e096f">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/rxjava-core-0.14.6-c8ffe3ffae212b7d8856014a8ad079557a87b7f0.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/gson-2.2.4-b2da3cfd3d26d275474ad90ed31cb9d11dfb254e.jar"
-        jar="/home/qym/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568"/>
+        revision="21.1.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/gson-2.2.4-7debb9f3865b820fe0f22c840a971047e4c93746.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/Android_Location_V1.3.0-c05f0ab5f86b8db340278426be76bd95305c6739.jar"
-        jar="/home/qym/文档/okm_android/main/libs/Android_Location_V1.3.0.jar"
+        jar="/Users/chenhong/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.2.2/cdf7b60568092fbcc7a254371c345e92f733c03c/retrofit-1.2.2.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="2ffeb17da57de5b5e57ec44c6397fb4d682cf0db"/>
+        revision="21.1.1"
+        sha1="cdf7b60568092fbcc7a254371c345e92f733c03c">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/retrofit-1.2.2-ce8f72913206521939fbe2965b4edbbfd0da6ef0.jar" />
+    </item>
     <item
-        dex="/home/qym/文档/okm_android/main/build/intermediates/pre-dexed/debug/ShareSDK-Wechat-Favorite-2.4.0-325b535a43cbff10e355c613d32dbc740d49a0a9.jar"
-        jar="/home/qym/文档/okm_android/main/libs/ShareSDK-Wechat-Favorite-2.4.0.jar"
+        jar="/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/classes.jar"
         jumboMode="false"
-        revision="20.0.0"
-        sha1="b9785fb2ef5d2376cbd3ee8652f87056a226ed10"/>
+        revision="21.1.1"
+        sha1="b345b04752628a557bfceefc3f15afb22533db18">
+        <dex dex="/Users/chenhong/okm_android/main/build/intermediates/pre-dexed/debug/classes-71ce92792a1c864b4380c4829b886e1d923b551f.jar" />
+    </item>
 
-</pre-dex-items>
+</items>

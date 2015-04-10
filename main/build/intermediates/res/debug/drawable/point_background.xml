@@ -4,4 +4,4 @@
     <item android:drawable="@drawable/point_bg_enable" android:state_enabled="true"></item>
     <item android:drawable="@drawable/point_bg_normal" android:state_enabled="false"></item>
 
-</selector><!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/drawable/point_background.xml -->
+</selector><!-- From: file:/Users/chenhong/okm_android/main/src/main/res/drawable/point_background.xml -->

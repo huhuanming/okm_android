@@ -7,11 +7,11 @@ import butterknife.ButterKnife.Finder;
 public class PlaceOrderActivity$$ViewInjector {
   public static void inject(Finder finder, final com.okm_android.main.Activity.PlaceOrderActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131230889, "field 'orderChoose'");
+    view = finder.findRequiredView(source, 2131296426, "field 'orderChoose'");
     target.orderChoose = (android.widget.RadioButton) view;
-    view = finder.findRequiredView(source, 2131230888, "field 'segmentedGroup'");
+    view = finder.findRequiredView(source, 2131296425, "field 'segmentedGroup'");
     target.segmentedGroup = (info.hoang8f.android.segmented.SegmentedGroup) view;
-    view = finder.findRequiredView(source, 2131230890, "field 'orderDetail'");
+    view = finder.findRequiredView(source, 2131296427, "field 'orderDetail'");
     target.orderDetail = (android.widget.RadioButton) view;
   }
 

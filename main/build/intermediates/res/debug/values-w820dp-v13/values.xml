@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/values-w820dp/dimens.xml -->
-    <eat-comment />
-
+    <!-- From: file:/Users/chenhong/okm_android/main/src/main/res/values-w820dp/dimens.xml -->
+    <eat-comment/>
     <dimen name="activity_horizontal_margin">64dp</dimen>
-
 </resources>

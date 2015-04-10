@@ -8,4 +8,4 @@
     android:singleLine="true"
     android:textColor="@color/bthumbnail_border"
     style="?android:attr/spinnerDropDownItemStyle"
-    /><!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/layout/spinner_dropdown_item_print.xml -->
+    /><!-- From: file:/Users/chenhong/okm_android/main/src/main/res/layout/spinner_dropdown_item_print.xml -->

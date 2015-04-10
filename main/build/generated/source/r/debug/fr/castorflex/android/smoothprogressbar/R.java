@@ -27,14 +27,14 @@ public final class R {
 		public static final int spb_default_color = 0x7f0700cb;
 	}
 	public static final class dimen {
-		public static final int spb_default_stroke_separator_length = 0x7f09003b;
-		public static final int spb_default_stroke_width = 0x7f09003c;
+		public static final int spb_default_stroke_separator_length = 0x7f08003b;
+		public static final int spb_default_stroke_width = 0x7f08003c;
 	}
 	public static final class id {
-		public static final int spb_interpolator_accelerate = 0x7f08001e;
-		public static final int spb_interpolator_acceleratedecelerate = 0x7f080020;
-		public static final int spb_interpolator_decelerate = 0x7f080021;
-		public static final int spb_interpolator_linear = 0x7f08001f;
+		public static final int spb_interpolator_accelerate = 0x7f090024;
+		public static final int spb_interpolator_acceleratedecelerate = 0x7f090025;
+		public static final int spb_interpolator_decelerate = 0x7f090026;
+		public static final int spb_interpolator_linear = 0x7f090027;
 	}
 	public static final class integer {
 		public static final int spb_default_interpolator = 0x7f0a0005;

@@ -5,4 +5,4 @@
         android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="ifRoom|collapseActionView"
         android:actionViewClass="android.widget.SearchView" />
-</menu><!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/menu/menu_search.xml -->
+</menu><!-- From: file:/Users/chenhong/okm_android/main/src/main/res/menu/menu_search.xml -->

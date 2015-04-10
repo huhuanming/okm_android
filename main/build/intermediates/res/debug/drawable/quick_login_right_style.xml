@@ -4,4 +4,4 @@
     <item android:state_checked="true" android:drawable="@drawable/login_right_press" />
     <item android:state_pressed="true" android:drawable="@drawable/login_right_press" />
     <item android:drawable="@drawable/login_right" />
-</selector><!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/drawable/quick_login_right_style.xml -->
+</selector><!-- From: file:/Users/chenhong/okm_android/main/src/main/res/drawable/quick_login_right_style.xml -->

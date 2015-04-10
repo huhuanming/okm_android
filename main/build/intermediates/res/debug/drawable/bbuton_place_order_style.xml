@@ -5,4 +5,4 @@
     <item android:state_pressed="true" android:drawable="@drawable/button_place_order_press" />
     <item android:drawable="@drawable/button_order_place_normal" />
 </selector>
-<!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/drawable/bbuton_place_order_style.xml -->
+<!-- From: file:/Users/chenhong/okm_android/main/src/main/res/drawable/bbuton_place_order_style.xml -->

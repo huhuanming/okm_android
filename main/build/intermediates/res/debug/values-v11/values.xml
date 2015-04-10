@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- From: file:/home/hu/文档/android%20project/okm_android/main/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml -->
-    <eat-comment />
-
+    <!-- From: file:/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values-v11/values.xml -->
+    <eat-comment/>
     <style name="Theme.Base" parent="android:Theme.Holo">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
@@ -20,7 +18,6 @@
         <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
-
     <style name="Theme.Base.AppCompat.Dialog.FixedSize" parent="android:Theme.Holo.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
@@ -33,7 +30,6 @@
         <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
-
     <style name="Theme.Base.AppCompat.Dialog.Light.FixedSize" parent="android:Theme.Holo.Light.Dialog">
         <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
         <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
@@ -46,7 +42,6 @@
         <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
-
     <style name="Theme.Base.Light" parent="android:Theme.Holo.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
@@ -63,13 +58,8 @@
         <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
     </style>
-
-    <style name="Widget.AppCompat.Base.AutoCompleteTextView" parent="android:Widget.Holo.AutoCompleteTextView" />
-
-    <style name="Widget.AppCompat.Base.ProgressBar" parent="android:Widget.Holo.ProgressBar" />
-
-    <style name="Widget.AppCompat.Base.ProgressBar.Horizontal" parent="android:Widget.Holo.ProgressBar.Horizontal" />
-
-    <style name="Widget.AppCompat.Light.Base.AutoCompleteTextView" parent="android:Widget.Holo.Light.AutoCompleteTextView" />
-
+    <style name="Widget.AppCompat.Base.AutoCompleteTextView" parent="android:Widget.Holo.AutoCompleteTextView"/>
+    <style name="Widget.AppCompat.Base.ProgressBar" parent="android:Widget.Holo.ProgressBar"/>
+    <style name="Widget.AppCompat.Base.ProgressBar.Horizontal" parent="android:Widget.Holo.ProgressBar.Horizontal"/>
+    <style name="Widget.AppCompat.Light.Base.AutoCompleteTextView" parent="android:Widget.Holo.Light.AutoCompleteTextView"/>
 </resources>

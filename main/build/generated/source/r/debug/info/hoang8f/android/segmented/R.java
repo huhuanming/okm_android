@@ -12,7 +12,7 @@ public final class R {
 		public static final int radio_button_unselected_color = 0x7f0700ba;
 	}
 	public static final class dimen {
-		public static final int radio_button_conner_radius = 0x7f090030;
+		public static final int radio_button_conner_radius = 0x7f080030;
 	}
 	public static final class drawable {
 		public static final int button_text_color = 0x7f020072;

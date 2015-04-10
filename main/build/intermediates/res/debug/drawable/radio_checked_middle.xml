@@ -4,4 +4,4 @@
     android:padding="10dp">
     <!-- you can use any color you want I used here gray color-->
     <solid android:color="@color/radio_button_selected_color" />
-</shape><!-- From: file:/Users/hoang8f/Desktop/projects/05.My%20projects/Android/Android-Segmented/library/src/main/res/drawable/radio_checked_middle.xml --><!-- From: file:/home/hu/文档/android%20project/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/res/drawable/radio_checked_middle.xml -->
+</shape><!-- From: file:/Users/hoang8f/Desktop/projects/05.My%20projects/Android/Android-Segmented/library/src/main/res/drawable/radio_checked_middle.xml --><!-- From: file:/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/res/drawable/radio_checked_middle.xml -->

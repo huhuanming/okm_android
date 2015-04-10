@@ -9,4 +9,4 @@
         android:bottomLeftRadius="@dimen/radio_button_conner_radius"
         android:topLeftRadius="@dimen/radio_button_conner_radius"
         android:topRightRadius="0.1dp" />
-</shape><!-- From: file:/Users/hoang8f/Desktop/projects/05.My%20projects/Android/Android-Segmented/library/src/main/res/drawable-v14/radio_checked_left.xml --><!-- From: file:/home/hu/文档/android%20project/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/res/drawable-v14/radio_checked_left.xml -->
+</shape><!-- From: file:/Users/hoang8f/Desktop/projects/05.My%20projects/Android/Android-Segmented/library/src/main/res/drawable-v14/radio_checked_left.xml --><!-- From: file:/Users/chenhong/okm_android/main/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.2/res/drawable-v14/radio_checked_left.xml -->

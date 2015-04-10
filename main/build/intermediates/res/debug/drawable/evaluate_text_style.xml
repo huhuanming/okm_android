@@ -2,4 +2,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" android:color="#ffffff" />
     <item android:color="#25ade8" />
-</selector><!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/drawable/evaluate_text_style.xml -->
+</selector><!-- From: file:/Users/chenhong/okm_android/main/src/main/res/drawable/evaluate_text_style.xml -->

@@ -20,4 +20,4 @@
             <corners android:radius="@dimen/bbuton_rounded_corner_radius"/>
         </shape></item>
 
-</selector><!-- From: file:/home/hu/文档/android%20project/okm_android/main/src/main/res/drawable/bbuton_warning_rounded.xml -->
+</selector><!-- From: file:/Users/chenhong/okm_android/main/src/main/res/drawable/bbuton_warning_rounded.xml -->

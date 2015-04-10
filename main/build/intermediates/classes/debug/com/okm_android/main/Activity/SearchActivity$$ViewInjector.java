@@ -7,7 +7,7 @@ import butterknife.ButterKnife.Finder;
 public class SearchActivity$$ViewInjector {
   public static void inject(Finder finder, final com.okm_android.main.Activity.SearchActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131230818, "field 'listView'");
+    view = finder.findRequiredView(source, 2131296354, "field 'listView'");
     target.listView = (android.widget.ListView) view;
   }
 
